@@ -12,6 +12,16 @@ using namespace std;
 void inFile(string inStr);
 void clearFile();
 void getFile();
+string getString ();
+
+void Gronsfeld() {
+    string key;
+    string str = getString();
+    cout << "Enter key: ";
+    cin >> key;
+    inFile("Key:" + key);
+    cout << str;
+}
 
 int main() {
     string dialogStr;
@@ -32,6 +42,10 @@ int main() {
         else if (dialogStr == "getFile") {
             cout << "    [FILE CONTENTS]" << endl << endl;
             getFile();
+        }
+
+        else if (dialogStr == "Gronsfeld") {
+            Gronsfeld();
         }
         else if (dialogStr == "help") {
             cout << "    [COMMANDS]" << endl;
@@ -70,4 +84,13 @@ void getFile() {
         cout<< str << endl;
     }
     file.close();
+}
+
+string getString () {
+    ifstream file;
+    string str;
+    file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt");
+    getline (file,str);
+    file.close();
+    return str;
 }
