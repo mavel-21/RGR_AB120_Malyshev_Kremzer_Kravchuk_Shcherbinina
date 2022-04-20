@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+
 using namespace std;
 
 void inFile(string inStr);
@@ -34,13 +35,15 @@ void Gronsfeld() {
     reverseArray(keyArr, lenOfKey);
 
     for (int i = 0, count = 0; i < strIn.length(); i++, count++) {
-        char c = strIn[i] + keyArr[count];
-        strOut.push_back(c);
         if (count == lenOfKey) count = 0;
         if (strIn[i] == ' ') {
             strOut.push_back(' ');
             count--;
             continue;
+        }
+        else {
+            char c = strIn[i] + keyArr[count];
+            strOut.push_back(c);
         }
     }
     inFile(strOut);
@@ -50,12 +53,12 @@ int main() {
     string dialogStr;
     while (true) {
         cout << "Enter a command: ";
-        getline(cin, dialogStr, '\n');
+        getline(cin, dialogStr);
         if (dialogStr == "input") {
             string str;
             cout << "Enter a string: ";
-            cin.ignore();
-            getline(cin, str, '\n');
+            //getline(cin, str, '\n');
+            getline(cin, str);
             inFile(str);
             cout << "    [THE FILE HAS BEEN UPDATED]" << endl << endl;
         }
