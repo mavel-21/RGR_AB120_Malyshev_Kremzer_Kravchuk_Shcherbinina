@@ -1,47 +1,42 @@
-//Список 4 подгруппы:
-//A) Кравчук Б.Д.
-//B) Кремзер А.Д.
-//C) Малышев П.А.
-//D) Щербинина Д.В.
-
 #include <iostream>
 #include <string>
 #include <fstream>
 
 using namespace std;
 
-void inFile(string inStr);
-void inFile(int inNum);
-void clearFile();
-void getFile();
-string getString ();
+string setPincode();
 
-void reverseArray(int arr[], int n);
+bool checkPincode(string pinUser, string pinAdmin);
+
+void inFile(string inStr);
+
+void keyInFile(string inKey);
+
+void clearFile();
+
+void getFile();
+
+string getString();
 
 void Gronsfeld() {
-    int key;
+    string key;
     string strIn = getString();
     cout << "Enter key: ";
-    cin >> key;
-    inFile(key);
+    getline(cin, key);
+    keyInFile(key);
     string strOut;
     int keyArr[10];
-    int lenOfKey = 0;
-    while (key > 0) {
-        keyArr[lenOfKey] = key%10;
-        key/=10;
-        lenOfKey++;
+    for (int i = 0; i < key.length(); i ++) {
+        keyArr[i] = key[i]-'0';
     }
-    reverseArray(keyArr, lenOfKey);
 
     for (int i = 0, count = 0; i < strIn.length(); i++, count++) {
-        if (count == lenOfKey) count = 0;
+        if (count == key.length()) count = 0;
         if (strIn[i] == ' ') {
             strOut.push_back(' ');
             count--;
             continue;
-        }
-        else {
+        } else {
             char c = strIn[i] + keyArr[count];
             strOut.push_back(c);
         }
@@ -51,44 +46,53 @@ void Gronsfeld() {
 
 int main() {
     string dialogStr;
+    string pincode = "0000";
+    cout << endl << "______________________________Hello______________________________" << endl <<
+            "__________To display a list of all commands write: help__________" << endl <<
+            "____Set a password, enter a passphrase, and choose encryption____" << endl << endl;
     while (true) {
         cout << "Enter a command: ";
         getline(cin, dialogStr);
         if (dialogStr == "input") {
             string str;
             cout << "Enter a string: ";
-            //getline(cin, str, '\n');
             getline(cin, str);
             inFile(str);
             cout << "    [THE FILE HAS BEEN UPDATED]" << endl << endl;
         }
+        else if (dialogStr == "pin") {
+            pincode = setPincode();
+        }
         else if (dialogStr == "clear") {
             clearFile();
             cout << "    [THE FILE HAS BEEN CLEARED]" << endl << endl;
-        }
-        else if (dialogStr == "get") {
+        } else if (dialogStr == "get") {
             cout << "    [FILE CONTENTS]" << endl;
             getFile();
             cout << endl;
-        }
-
-        else if (dialogStr == "gronsfeld") {
-            Gronsfeld();
-        }
-        else if (dialogStr == "help") {
+        } else if (dialogStr == "gronsfeld") {
+            string pinUser;
+            cout << "Please enter the pincode: ";
+            getline(cin, pinUser);
+            if (pincode == "0000") cout << "    [Pincode not set!]" << endl;
+            else if (checkPincode(pinUser, pincode)) {
+                cout << "    [Pincode validation passed successfully!]" << endl;
+                Gronsfeld();
+            }
+            else cout << "    [Pincode is not correct!]" << endl;
+        } else if (dialogStr == "help") {
             cout << "    [COMMANDS]" << endl;
             cout << "input -- Writing a line to a file;" << endl;
             cout << "get -- Displaying the contents of a file;" << endl;
             cout << "clear -- Cleaning up the contents of a file;" << endl;
+            cout << "pin -- Pincode setting;" << endl;
             cout << "gronsfeld -- Gronsfeld cipher" << endl;
             cout << "stop -- Stop program;" << endl << endl;
 
-        }
-        else if (dialogStr == "stop") {
+        } else if (dialogStr == "stop") {
             cout << "    [The program has been stopped]" << endl;
             break;
-        }
-        else {
+        } else {
             cout << endl << "[ERROR_217][THIS COMMAND DOES NOT EXIST][ERROR_217]" << endl << endl;
         }
     }
@@ -102,10 +106,10 @@ void inFile(string inStr) {
     file.close();
 }
 
-void inFile(int inNum) {
+void keyInFile(string inKey) {
     ofstream file;
     file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt", ofstream::app);
-    file << "Key:" << inNum << endl;
+    file << "Key:" << inKey << endl;
     file.close();
 }
 
@@ -119,24 +123,28 @@ void getFile() {
     ifstream file;
     string str;
     file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt");
-    while (getline (file,str))
-    {
-        cout<< str << endl;
+    while (getline(file, str)) {
+        cout << str << endl;
     }
     file.close();
 }
 
-string getString () {
+string getString() {
     ifstream file;
     string str;
     file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt");
-    getline (file,str, '\n');
+    getline(file, str, '\n');
     file.close();
     return str;
 }
 
-void reverseArray(int arr[], int n) {
-    for (int low = 0, high = n - 1; low < high; low++, high--){
-        swap(arr[low], arr[high]);
-    }
+string setPincode() {
+    string pincode;
+    cout << "Enter pincode: ";
+    getline(cin, pincode);
+    return pincode;
+}
+
+bool checkPincode(string pinUser, string pinAdmin) {
+    return (pinUser == pinAdmin);
 }
