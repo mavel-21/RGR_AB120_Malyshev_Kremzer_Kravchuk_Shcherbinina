@@ -6,12 +6,15 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
-// АТБАШ 1.0. ФАЙЛОВЫЙ ВВОД/ВЫВОД БУДЕТ ДОБАВЛЕН ПОЗЖЕ
+// АТБАШ 1.1. ДОБАВЛЕН ФАЙЛОВЫЙ ВВОД-ВЫВОД И ВЫБОР ШИФРОВКИ
 
 string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 string cab = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
+ofstream outfile;
+ifstream infile;
 
 void atbash(string line, int choice)
 {
@@ -36,19 +39,33 @@ void atbash(string line, int choice)
     }
     for (char elem : line)
     {
-        cout << elem;
+        outfile << elem;
     }
+    outfile << " " << endl;
 }
 
 int main()
 {
+    outfile.open("output.txt");
+    infile.open("input.txt");
     setlocale(LC_ALL, "Russian");
     string line;
-    int choice;
-    cout << "Введите строку: ";
-    getline(cin, line);
-    cout << "Выберите, что требуется сделать со строкой:\n1) Зашифровать \t 2) Дешифровать" << endl;
+    int choice, algo;
+    cout << "Выберите шифровку:\n1) Атбаш\t2) Шифр с использованием кодового слова\t       3) Табличная шифровка с ключевым словом" << endl;
+    cin >> algo;
+    cout << "Выберите, что требуется сделать с текстом:\n1) Зашифровать \t 2) Дешифровать" << endl;
     cin >> choice;
-    atbash(line, choice);
+    while (getline(infile, line))
+    {
+        switch (algo)
+        {
+        case 1:
+            atbash(line, choice);
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        }
+    }
 }
-
