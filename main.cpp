@@ -58,7 +58,7 @@ void Gronsfeld() { // шифровка Гронсфельда
 
 int main() {
     string dialogStr; // диалоговая строка
-    string pincode = "0000"; // дефолтный пинкод
+    string pinAdmin = "0000"; // дефолтный пинкод
     cout << endl << "______________________________Hello______________________________" << endl <<
          "__________To display a list of all commands write: help__________" << endl <<
          "____Set a password, enter a passphrase, and choose encryption____" << endl << endl;
@@ -72,15 +72,15 @@ int main() {
             inFile("Phrase: " + str); //запись этой строки (фразы) в файл
             cout << "    [THE FILE HAS BEEN UPDATED]" << endl << endl;
         } else if (dialogStr == "pin") { // команда ввода пинкода
-            cout << "Enter pincode: ";
-            getline(cin, pincode); // ввод пинкода
+            cout << "Enter pinAdmin: ";
+            getline(cin, pinAdmin); // ввод пинкода
             cout << "    [PINCODE SET]" << endl << endl;
         } else if (dialogStr == "clear") { // команда очистки файла
             clearFile(); // обращение к функции очистки файла
             cout << "    [THE FILE HAS BEEN CLEARED]" << endl << endl;
         } else if (dialogStr == "get") { // команда получения содержимого файла
             cout << "    [FILE CONTENTS]" << endl;
-            getFile(); // обраение к функции получения содержимого файла
+            getFile(); // обращение к функции получения содержимого файла
             cout << endl;
         } else if (dialogStr == "cipher") {
             string cipher_str;
@@ -97,14 +97,14 @@ int main() {
                 case 1: // шифровка Гронсфельда
                 {
                     cout << endl << "    [Gronsfeld cipher]" << endl << endl;
-                    if (pincode == "0000") { // провяеярка того, задан ли пинкод
+                    if (pinAdmin == "0000") { // проверка того, задан ли пинкод
                         cout << "    [Pincode not set!]" << endl;
                         break;
                     }
                     string pinUser; // пинкод
-                    cout << "Please enter the pincode: ";
+                    cout << "Please enter the pinAdmin: ";
                     getline(cin, pinUser); // ввод пинкода
-                    if (checkPincode(pinUser, pincode)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
                         cout << "    [Pincode validation passed successfully!]" << endl;
                         Gronsfeld();
                     } else cout << "    [Pincode is not correct!]" << endl;
@@ -170,7 +170,7 @@ string getPhrase() { // функция получения фразы из фай
         break;
     }
     file.close(); // закрыть файл
-    return phrase; // выести фразу
+    return phrase; // вывести фразу
 }
 
 bool checkPincode(string pinUser, string pinAdmin) { // функция проверки пинкода
