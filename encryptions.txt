@@ -1,4 +1,5 @@
-Phrase: good boy
-Key: 123
-hqre drz
-Key: stop
+Phrase: bobobo
+Key: 16
+Gronsfeld: cucucu
+Decryption: Tr
+Decryption: Tr

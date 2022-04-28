@@ -15,17 +15,19 @@ using namespace std;
 
 bool checkPincode(string pinUser, string pinAdmin);
 
+bool checkString(string mark);
+
 void inFile(string inStr);
 
 void clearFile();
 
 void getFile();
 
-string getPhrase();
+string getString(string mark, int pos_n);
 
 void Gronsfeld() { // шифровка Гронсфельда
     string key; // ключ
-    string strIn = getPhrase(); // входная строка
+    string strIn = getString("Phrase: ", 8); // входная строка
     cout << "Enter key: ";
     getline(cin, key);
     inFile("Key: " + key); // получение и запись ключа в файл
@@ -53,7 +55,36 @@ void Gronsfeld() { // шифровка Гронсфельда
             strOut.push_back(c); // добавление шифрованного символа в строку
         }
     }
-    inFile(strOut); // запись строки в файл
+    inFile("Gronsfeld: " + strOut); // запись строки в файл
+}
+
+void antiGronsfeld() {
+        string key_str = getString("Key: ", 5);
+        int keyArr[key_str.length()];
+        for (int i = 0; i < key_str.length(); i++) {
+            keyArr[i] = key_str[i] - '0';
+        }
+        string strIn = getString("Gronsfeld: ", 11); // входная строка
+        string strOut; // выходная строка
+        for (int i = 0, count = 0; i < strIn.length(); i++, count++) {
+            if (count == key_str.length()) count = 0; // сброс счётчика ключа
+            if (strIn[i] == ' ') { // учёт пробелов в строке
+                strOut.push_back(' ');
+                count--;
+                continue;
+            } else {
+                char c;
+                if (strIn[i] >= 'a' and strIn[i] <= 'z' and strIn[i] - keyArr[count] < 'a')
+                    c = strIn[i] - keyArr[count] + ('z' - 'a' +
+                                                    1); // устранение бага появления неподходящих символов (десятичный код которых больший 122)
+                else if (strIn[i] >= 'A' and strIn[i] <= 'Z' and strIn[i] + keyArr[count] < 'A')
+                    c = strIn[i] - keyArr[count] + ('Z' - 'A' +
+                                                    1); // устранение бага появления неподходящих символов (десятичный код которых больший 90 и меньший 97)
+                else c = strIn[i] - keyArr[count];
+                strOut.push_back(c); // добавление шифрованного символа в строку
+            }
+        }
+        inFile("Decryption: " + strOut); // запись строки в файл
 }
 
 int main() {
@@ -102,7 +133,7 @@ int main() {
                         break;
                     }
                     string pinUser; // пинкод
-                    cout << "Please enter the pinAdmin: ";
+                    cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
                     if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
                         cout << "    [Pincode validation passed successfully!]" << endl;
@@ -117,7 +148,11 @@ int main() {
                 default:
                     break;
             }
-        } else if (dialogStr == "help") { // команда вызова списка команд
+        }
+        else if (dialogStr == "decrypt") {
+            if (checkString("Gronsfeld: ")) antiGronsfeld();
+        }
+        else if (dialogStr == "help") { // команда вызова списка команд
             cout << "    [COMMANDS]" << endl;
             cout << "input -- Writing a line to a file;" << endl;
             cout << "get -- Displaying the contents of a file;" << endl;
@@ -159,18 +194,33 @@ void getFile() { // функция получения содержимого ф�
     file.close(); // закрыть файл
 }
 
-string getPhrase() { // функция получения фразы из файла
+string getString(string mark, int pos_n) { // функция получения фразы из файла
     ifstream file;
-    string str, phrase;
+    string line, str_out;
     file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt"); // открыть файл
-    while (getline(file, str)) { // пока в файле есть строки
-        if (str.find("Phrase: ") >= 0)
-            phrase = str.substr(
-                    8); // если строка содержит метку "Phrase: ", в переменную phrase записать содержимое строки из файла после этой метки
-        break;
+    while (getline(file, line)) { // пока в файле есть строки
+        int checkMark = line.find(mark);
+        if (checkMark > -1) {
+            str_out = line.substr(
+                    pos_n); // если строка содержит метку, в переменную phrase записать содержимое строки из файла после этой метки
+            break;
+        }
     }
     file.close(); // закрыть файл
-    return phrase; // вывести фразу
+    return str_out; // вывести фразу
+}
+
+bool checkString(string mark) {
+    ifstream file;
+    string line;
+    file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt"); // открыть файл
+    while (getline(file, line)) { // пока в файле есть строки
+        if (line.find(mark) >= 0) {
+            return true;
+            break;
+        }
+    }
+    return false;
 }
 
 bool checkPincode(string pinUser, string pinAdmin) { // функция проверки пинкода
