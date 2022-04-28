@@ -1,13 +1,24 @@
-//Список 4 подгруппы:
-//A) Кравчук Б.Д.
-//B) Кремзер А.Д.
-//C) Малышев П.А.
-//D) Щербинина Д.В.
-
 #include <iostream>
-using namespace std;
+#include <string>
+#include <vector>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+using namespace std;
+//шифр Цезаря
+int main()
+{
+    string s;
+    int k;
+    cin >> s;
+    cin >> k;
+
+    for (auto& c : s)
+    {
+        if (c >= 'a' && c <= 'z')
+            c = ((c - 'a' + k) % 26) + 'a';
+        else if (c >= 'A' && c <= 'Z')
+            c = ((c - 'A' + k) % 26) + 'A';
+    }
+
+    cout << s << endl;
     return 0;
 }
