@@ -29,6 +29,45 @@ int sameLetters(string word)
     }
     return 0;
 }
+
+vector<vector<string>> mtrxTransp(vector<vector<string>> a) // транспонирование матрицы
+{
+    vector<vector<string>> result(a[0].size(), vector <string>(a.size()));
+    for (size_t i = 0; i < a[0].size(); i++)
+    {
+        for (size_t j = 0; j < a.size(); j++)
+        {
+            result[i][j] = a[j][i];
+        }
+    }
+    return result;
+}
+
+void tableCypher(string line, string keyword, int mode)
+{
+    int counter = 0, stSize = (line.size() + keyword.size() * 2) / keyword.size() + 1;
+    string keywordunsorted = keyword;
+    sort(keyword.begin(), keyword.end());
+    vector <vector<char>> cyphertext(keyword.size(), vector<char>(stSize));
+    for (size_t i = 0; i < keyword.size(); i++)
+    {
+        cyphertext[i][0] = keywordunsorted[i]; // здесь добавить номер буквы в слове 
+        for (int j = 2; j < stSize; j++)
+        {
+            if (counter == line.size())
+                break;
+            cyphertext[i][j] = line[counter];
+            counter++;
+        }
+    }
+    for (size_t i = 0; i < cyphertext.size(); i++)
+    {
+        for (size_t j = 0; j < cyphertext[i].size(); j++)
+            outfile << cyphertext[i][j] << " ";
+        outfile << endl;
+    }
+}
+
 void atbash(string line, int mode)
 {
     int strSize = line.size(), ind = 0;
