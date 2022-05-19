@@ -11,12 +11,28 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <windows.h>
+#include <algorithm>
 using namespace std;
 
 string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 string cab = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
 ofstream outfile;
 ifstream infile;
+
+vector<vector<char>> mtrxTransp(vector<vector<char>> &a) // транспонирование матрицы
+{
+    vector<vector<char>> result(a[0].size(), vector <char>(a.size()));
+    for (size_t i = 0; i < a[0].size(); i++)
+    {
+        for (size_t j = 0; j < a.size(); j++)
+        {
+            result[i][j] = a[j][i];
+        }
+    }
+    return result;
+}
+
 int sameLetters(string word)
 {
     for (int i = 0; i < word.length(); i++)
@@ -28,44 +44,6 @@ int sameLetters(string word)
         }
     }
     return 0;
-}
-
-vector<vector<string>> mtrxTransp(vector<vector<string>> a) // транспонирование матрицы
-{
-    vector<vector<string>> result(a[0].size(), vector <string>(a.size()));
-    for (size_t i = 0; i < a[0].size(); i++)
-    {
-        for (size_t j = 0; j < a.size(); j++)
-        {
-            result[i][j] = a[j][i];
-        }
-    }
-    return result;
-}
-
-void tableCypher(string line, string keyword, int mode)
-{
-    int counter = 0, stSize = (line.size() + keyword.size() * 2) / keyword.size() + 1;
-    string keywordunsorted = keyword;
-    sort(keyword.begin(), keyword.end());
-    vector <vector<char>> cyphertext(keyword.size(), vector<char>(stSize));
-    for (size_t i = 0; i < keyword.size(); i++)
-    {
-        cyphertext[i][0] = keywordunsorted[i]; // здесь добавить номер буквы в слове 
-        for (int j = 2; j < stSize; j++)
-        {
-            if (counter == line.size())
-                break;
-            cyphertext[i][j] = line[counter];
-            counter++;
-        }
-    }
-    for (size_t i = 0; i < cyphertext.size(); i++)
-    {
-        for (size_t j = 0; j < cyphertext[i].size(); j++)
-            outfile << cyphertext[i][j] << " ";
-        outfile << endl;
-    }
 }
 
 void atbash(string line, int mode)
@@ -94,6 +72,67 @@ void atbash(string line, int mode)
         outfile << elem;
     }
     outfile << " " << endl;
+}
+
+void lineswap(vector<char> &a, vector<char> &b)
+{
+    vector<char> temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+void tableCypher(string line, string keyword, int mode)
+{
+    int counter = 0, j, stSize;
+    line.erase(remove(line.begin(), line.end(), ' '), line.end());
+    if ((line.size() + keyword.size()) % keyword.size() == 0)
+        stSize = ((line.size() + keyword.size()) / keyword.size());
+    else stSize = ((line.size() + keyword.size()) / keyword.size()) + 1;
+    string keywordunsorted = keyword;
+    sort(keyword.begin(), keyword.end());
+    vector <vector<char>> cyphertext(keyword.size(), vector<char>(stSize));
+    for (size_t i = 0; i < keyword.size(); i++)
+    {
+        for (size_t j = 0; j < stSize; j++)
+            cyphertext[i][j] = ' ';
+    }
+    for (size_t i = 0; i < keyword.size(); i++)
+    {
+        cyphertext[i][0] = keywordunsorted[i]; 
+        for (size_t j = 1; j < stSize; j++)
+        {
+            if (counter == line.size())
+                break;
+            cyphertext[i][j] = line[counter];
+            counter++;
+        }
+    }
+    counter = 0;
+    char temp;
+    for (size_t i = 0; i < keyword.size(); i++)
+    {
+        for (j = counter; j < keyword.size(); j++)
+        {
+            if ((cyphertext[i][0] != keyword[i]) && (cyphertext[j][0] == keyword[i]))
+            {
+                lineswap(cyphertext[i], cyphertext[j]);
+                counter++;
+                break;
+            }
+        }
+    }
+    cyphertext = mtrxTransp(cyphertext);
+    for (size_t i = 1; i < cyphertext.size(); i++)
+    {
+        for (size_t j = 0; j < cyphertext[i].size(); j++)
+        {
+            if (cyphertext[i][j] == ' ')
+                continue;
+            outfile << cyphertext[i][j];
+        }
+        outfile << " ";
+    }
 }
 
 void keywordABC(string line, string keyword, int mode) 
@@ -144,7 +183,7 @@ int main()
     infile.open("input.txt");
     setlocale(LC_ALL, "Russian");
     string line, keyword;
-    int mode, algo;
+    int mode = 0, algo;
     cout << "Выберите шифровку:\n1) Атбаш\t2) Шифр с использованием кодового слова\t       3) Табличная шифровка с ключевым словом" << endl;
     cin >> algo;
     if ((algo == 2) || (algo == 3))
@@ -170,7 +209,9 @@ int main()
             keywordABC(line, keyword, mode);
             break;
         case 3:
+            tableCypher(line, keyword, mode);
             break;
         }
     }
 }
+
