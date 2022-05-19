@@ -74,14 +74,6 @@ void atbash(string line, int mode)
     outfile << " " << endl;
 }
 
-void lineswap(vector<char> &a, vector<char> &b)
-{
-    vector<char> temp;
-    temp = a;
-    a = b;
-    b = temp;
-}
-
 void tableCypher(string line, string keyword, int mode)
 {
     int counter = 0, j, stSize;
