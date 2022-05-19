@@ -128,7 +128,10 @@ void tableCypher(string line, string keyword, int mode)
         for (size_t j = 0; j < cyphertext[i].size(); j++)
         {
             if (cyphertext[i][j] == ' ')
+            {
+                outfile << '_';
                 continue;
+            }
             outfile << cyphertext[i][j];
         }
         outfile << " ";
