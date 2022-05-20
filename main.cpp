@@ -3,9 +3,9 @@
 // Группа: АБ-120
 
 // Шифровки:
-//      Шифр Атбаш (5.10)
-//      Шифр с использованием кодового слова (5.14)
-//      Табличная шифровка с ключевым словом (5.17)
+//      Шифр Атбаш (5.10) ✓
+//      Шифр с использованием кодового слова (5.14) ✓
+//      Табличная шифровка с ключевым словом (5.17) ✓
 
 #include <iostream>
 #include <string>
@@ -74,15 +74,31 @@ void atbash(string line, int mode)
     outfile << " " << endl;
 }
 
-void tableCypher(string line, string keyword, int mode)
+void sortByKey(vector <vector<char>> &text, string key)
 {
-    int counter = 0, j, stSize;
+    size_t j = 0, counter = 0;   
+    for (size_t i = 0; i < key.size(); i++)
+    {
+        for (j = counter; j < key.size(); j++)
+        {
+            if ((text[i][0] != key[i]) && (text[j][0] == key[i]))
+            {
+                swap(text[i], text[j]);
+                counter++;
+                break;
+            }
+        }
+    }
+}
+
+void tableCypherEncode(string line, string keyword)
+{
+    int counter = 0, stSize;
+    for (auto c : keyword) c = toupper(c);
     line.erase(remove(line.begin(), line.end(), ' '), line.end());
     if ((line.size() + keyword.size()) % keyword.size() == 0)
         stSize = ((line.size() + keyword.size()) / keyword.size());
     else stSize = ((line.size() + keyword.size()) / keyword.size()) + 1;
-    string keywordunsorted = keyword;
-    sort(keyword.begin(), keyword.end());
     vector <vector<char>> cyphertext(keyword.size(), vector<char>(stSize));
     for (size_t i = 0; i < keyword.size(); i++)
     {
@@ -91,7 +107,7 @@ void tableCypher(string line, string keyword, int mode)
     }
     for (size_t i = 0; i < keyword.size(); i++)
     {
-        cyphertext[i][0] = keywordunsorted[i]; 
+        cyphertext[i][0] = keyword[i]; 
         for (size_t j = 1; j < stSize; j++)
         {
             if (counter == line.size())
@@ -100,20 +116,8 @@ void tableCypher(string line, string keyword, int mode)
             counter++;
         }
     }
-    counter = 0;
-    char temp;
-    for (size_t i = 0; i < keyword.size(); i++)
-    {
-        for (j = counter; j < keyword.size(); j++)
-        {
-            if ((cyphertext[i][0] != keyword[i]) && (cyphertext[j][0] == keyword[i]))
-            {
-                lineswap(cyphertext[i], cyphertext[j]);
-                counter++;
-                break;
-            }
-        }
-    }
+    sort(keyword.begin(), keyword.end());
+    sortByKey(cyphertext, keyword);
     cyphertext = mtrxTransp(cyphertext);
     for (size_t i = 1; i < cyphertext.size(); i++)
     {
@@ -127,6 +131,43 @@ void tableCypher(string line, string keyword, int mode)
             outfile << cyphertext[i][j];
         }
         outfile << " ";
+    }
+}
+
+void tableCypherDecode(string line, string keyword)
+{
+    for (auto c : keyword) c = toupper(c);
+    line.erase(remove(line.begin(), line.end(), ' '), line.end());
+    int stSize = line.size() / keyword.size() + 1, counter = 0;
+    vector <vector<char>> cyphertext(keyword.size(), vector<char>(stSize));
+    for (size_t i = 0; i < keyword.size(); i++)
+    {
+        for (size_t j = 0; j < stSize; j++)
+            cyphertext[i][j] = ' ';
+    }
+    string unsortedkey = keyword;
+    sort(keyword.begin(), keyword.end());
+    for (size_t i = 0; i < keyword.size(); i++) 
+        cyphertext[i][0] = keyword[i];
+    for (size_t j = 1; j < keyword.size(); j++)
+    {
+        for (size_t i = 0; i < keyword.size(); i++)
+        {
+            if (counter == line.size())
+                break;
+            cyphertext[i][j] = line[counter];
+            counter++;
+        }
+    }
+    sortByKey(cyphertext, unsortedkey);
+    for (size_t i = 0; i < cyphertext.size(); i++)
+    {
+        for (size_t j = 1; j < cyphertext[i].size(); j++)
+        {
+            if (cyphertext[i][j] == '_')
+                continue;
+            outfile << cyphertext[i][j];
+        }
     }
 }
 
@@ -172,6 +213,7 @@ void keywordABC(string line, string keyword, int mode)
     }
     outfile << " " << endl;
 }
+
 int main()
 {
     outfile.open("output.txt");
@@ -204,7 +246,8 @@ int main()
             keywordABC(line, keyword, mode);
             break;
         case 3:
-            tableCypher(line, keyword, mode);
+            if (mode == 1) tableCypherEncode(line, keyword);
+            else tableCypherDecode(line, keyword);
             break;
         }
     }
