@@ -7,6 +7,8 @@
 //      Шифр с использованием кодового слова (5.14) ✓
 //      Табличная шифровка с ключевым словом (5.17) ✓
 
+// ВНИМАНИЕ: шифровки используют только латинский алфавит и символы ASCII. 
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -44,6 +46,19 @@ int main()
     if ((algo == 2) || (algo == 3)) keyword = getKey();
     cout << "Выберите, что требуется сделать с текстом:\n1) Зашифровать \t 2) Дешифровать" << endl;
     cin >> mode;
+    while (getline(infile, line))
+    {
+        try {
+            for (char elem : line) if ((int(elem) < 0) || (int(elem) > 255)) throw("INPUT_INCORRECT");
+        }
+        catch (...) {
+            cout << "Ошибка ввода. Проверьте, нет ли в вашем файле букв русского алфавита или символов вне таблицы ASCII." << endl;
+            outfile << "INPUT_INCORRECT";
+            return 0;
+        }
+    }
+    infile.clear();
+    infile.seekg(0, ios::beg);
     while (getline(infile, line))
     {
         switch (algo)
