@@ -7,4 +7,6 @@ using namespace std;
 
 int sameLetters(string word);
 
+int isKeyASCII(string word);
+
 string getKey();
