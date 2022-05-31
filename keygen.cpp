@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int sameLetters(string word)
+int sameLetters(string word) // проверка повторяющихся символов в ключе
 {
     for (int i = 0; i < word.length(); i++)
     {
@@ -18,16 +18,31 @@ int sameLetters(string word)
     return 0;
 }
 
+int isKeyValid(string word) // проверка ключа на наличие недопустимых символов (в т.ч. букв русского алфавита) и цифр
+{
+    for (char elem : word) if ((int(elem) < 0) || (int(elem) > 255) || (int(elem) > 47)  && (int(elem) < 58)) return 0;
+    return 1;
+}
+
 string getKey()
 {
     setlocale(LC_ALL,"Russian");
-    string keyword;
+    string keyword, enter = "Введите ключевое слово без повторяющихся букв, цифр и русских символов: ",
+                    err = "Некорректный ввод! Проверьте, чтобы ключ не содержал повторяющихся букв, цифр и русских символов.";
     do
         {
-            cout << "Enter a keyword without two same letters: ";
+        try {
+            cout << enter;
             cin >> keyword;
             if (sameLetters(keyword) != 0)
-                cout << "There are two same letters in this keyword! ";
-        } while (sameLetters(keyword) != 0);
+                throw("KEY_SAME_LETTERS");
+            if (isKeyValid(keyword) == 0)
+                throw("KEY_NOT_VALID");
+        }
+        catch (...)
+        {
+            cout << err << endl << endl;
+        }
+        } while ((sameLetters(keyword) != 0) || (isKeyValid(keyword) == 0));
     return keyword;
 }
