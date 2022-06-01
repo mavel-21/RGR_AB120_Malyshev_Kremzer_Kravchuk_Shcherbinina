@@ -1,11 +1,12 @@
 #include <iostream>
 #include <string>
 #include <locale>
+#include <vector>
 #include "keygen.h"
 
 using namespace std;
 
-int sameLetters(string word) // проверка повторяющихся символов в ключе
+int sameLetters(string word)
 {
     for (int i = 0; i < word.length(); i++)
     {
@@ -18,22 +19,28 @@ int sameLetters(string word) // проверка повторяющихся си
     return 0;
 }
 
-int isKeyValid(string word) // проверка ключа на наличие недопустимых символов (в т.ч. букв русского алфавита) и цифр
+int isKeyValid(string word)
 {
-    for (char elem : word) if ((int(elem) < 0) || (int(elem) > 255) || (int(elem) > 47)  && (int(elem) < 58)) return 0;
-    return 1;
+    string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    for (char elem : word)
+    {
+        if (find(abc.begin(), abc.end(), elem) == abc.end())
+            return 0;
+        return 1;
+    }
 }
 
 string getKey()
 {
     setlocale(LC_ALL,"Russian");
-    string keyword, enter = "Введите ключевое слово без повторяющихся букв, цифр и русских символов: ",
-                    err = "Некорректный ввод! Проверьте, чтобы ключ не содержал повторяющихся букв, цифр и русских символов.";
+    string keyword, enter = "Введите ключевое слово, состоящее только из неповторяющихся символов латинского алфавита:",
+                    err = "Некорректный ввод!";
     do
         {
         try {
-            cout << enter;
-            cin >> keyword;
+            cout << enter << endl;
+            getline(cin, keyword);
+            keyword.erase(find(keyword.begin(), keyword.end(), ' '), keyword.end());
             if (sameLetters(keyword) != 0)
                 throw("KEY_SAME_LETTERS");
             if (isKeyValid(keyword) == 0)
