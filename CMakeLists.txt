@@ -3,4 +3,4 @@ project(progRgr)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(progRgr main.cpp)
+add_executable(progRgr main.cpp "Header.h" "Source.cpp")

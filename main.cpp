@@ -1,11 +1,17 @@
-#include <iostream>
+/*#include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
 //Щербинина Д.В
-//шифр Цезаря
+// Группа: АБ - 120
+// Шифровки:
+// Шифр Цезаря (5.1)
+// Двойная табличная перестановка(5.18)
+// «Матричная шифровка»(5.4)
+
 int main()
+//шифр Цезаря
 {
     string s;
     int k;
@@ -22,4 +28,10 @@ int main()
 
     cout << s << endl;
     return 0;
-}
+}*/
+
+
+
+
+
+
