@@ -1,34 +1,26 @@
-/*#include <iostream>
-#include <string>
-#include <vector>
-
-using namespace std;
+#include <iostream>
+#include <fstream>
+#include <Windows.h>
+#include <string> 
+#include "Header.h"
 //Щербинина Д.В
 // Группа: АБ - 120
 // Шифровки:
 // Шифр Цезаря (5.1)
 // Двойная табличная перестановка(5.18)
 // «Матричная шифровка»(5.4)
+using namespace std;
 
-int main()
-//шифр Цезаря
-{
-    string s;
-    int k;
-    cin >> s;
-    cin >> k;
+int main() {
 
-    for (auto& c : s)
-    {
-        if (c >= 'a' && c <= 'z')
-            c = ((c - 'a' + k) % 26) + 'a';
-        else if (c >= 'A' && c <= 'Z')
-            c = ((c - 'A' + k) % 26) + 'A';
-    }
+	Caesar();
+	UnCaesar();
+	DoubleTable();
+	UnDoubleTable();
 
-    cout << s << endl;
-    return 0;
-}*/
+		
+	return 0;
+}
 
 
 
