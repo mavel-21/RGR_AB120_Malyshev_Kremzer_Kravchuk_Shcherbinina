@@ -10,3 +10,4 @@ void UnCaesar();
 void DoubleTable();
 void UnDoubleTable();
 void Tarab();
+void UnTarab();
