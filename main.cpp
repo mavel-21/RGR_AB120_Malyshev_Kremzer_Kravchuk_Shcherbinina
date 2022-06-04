@@ -8,7 +8,7 @@
 // Шифровки:
 // Шифр Цезаря (5.1)
 // Двойная табличная перестановка(5.18)
-// «Матричная шифровка»(5.4)
+// «Тарабарская грамота»(5.20)
 using namespace std;
 
 int main() {
@@ -17,8 +17,8 @@ int main() {
 	UnCaesar();
 	DoubleTable();
 	UnDoubleTable();
-
-		
+	Tarab();
+	Tarab();
 	return 0;
 }
 

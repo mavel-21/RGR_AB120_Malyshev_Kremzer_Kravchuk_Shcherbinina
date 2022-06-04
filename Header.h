@@ -9,3 +9,4 @@ void Caesar();
 void UnCaesar();
 void DoubleTable();
 void UnDoubleTable();
+void Tarab();
