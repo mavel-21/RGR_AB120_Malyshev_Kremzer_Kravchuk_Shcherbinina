@@ -77,8 +77,8 @@ void tableCypherEncode(string line, string keyword, ofstream& outfile)
             }
             outfile << cyphertext[i][j];
         }
-        outfile << " ";
     }
+    outfile << endl;
 }
 
 void tableCypherDecode(string line, string keyword, ofstream& outfile)
@@ -116,4 +116,5 @@ void tableCypherDecode(string line, string keyword, ofstream& outfile)
             outfile << cyphertext[i][j];
         }
     }
+    outfile << endl;
 }
