@@ -7,21 +7,21 @@ using namespace std;
 
 void inFile(const string& inStr) { // функция записи строки в файл
     ofstream file;
-    file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt", ofstream::app); // открыть файл
+    file.open("input.txt", ofstream::app); // открыть файл
     file << inStr << endl; // запись строки в файл
     file.close(); // закрыть файл
 }
 
 void clearFile() { // функция очистки файла
     ofstream file;
-    file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt"); // открыть файл (тем самым обнулить)
+    file.open("input.txt"); // открыть файл (тем самым обнулить)
     file.close(); // закрыть файл
 }
 
 void getFile() { // функция получения содержимого файла
     ifstream file;
     string str;
-    file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt"); // открыть файл для чтения
+    file.open("input.txt"); // открыть файл для чтения
     while (getline(file, str)) { // пока в файле есть строки: вывести строки
         cout << str << endl;
     }
