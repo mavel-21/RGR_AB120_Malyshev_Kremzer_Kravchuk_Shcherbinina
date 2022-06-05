@@ -1,4 +1,4 @@
-Key: 3
-Caesar 
-Key: 3
-Caesar 
+Phrase: dfrwere werwer
+Key: 4
+Caesar: hjvaivi aivaiv
+Caesar decryption: dfrwere werwer

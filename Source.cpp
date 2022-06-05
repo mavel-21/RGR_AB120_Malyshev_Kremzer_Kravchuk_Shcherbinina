@@ -12,6 +12,21 @@ void inFile(string inStr) { // функция записи строки в файл
 	file << inStr << endl; 
 	file.close(); 
 }
+bool checkPincode(string pinUser, string pinAdmin) { // функция проверки пинкода
+	return (pinUser == pinAdmin);
+}
+bool checkString(string mark) {
+	ifstream file;
+	string line;
+	file.open("text.txt"); // открыть файл
+	while (getline(file, line)) { // пока в файле есть строки
+		if (line.find(mark) >= 0) {
+			return true;
+			break;
+		}
+	}
+	return false;
+}
 string getString(string mark, int pos_n) { // функция получения фразы из файла
 	ifstream file;
 	string line, str_out;
@@ -31,6 +46,15 @@ void clearFile() { // функция очистки файла
 	ofstream file;
 	file.open("text.txt"); 
 	file.close(); 
+}
+void getFile() { // функция получения содержимого файла
+	ifstream file;
+	string str;
+	file.open("text.txt"); // открыть файл для чтения
+	while (getline(file, str)) { // пока в файле есть строки: вывести строки
+		cout << str << endl;
+	}
+	file.close(); // закрыть файл
 }
 void Caesar() {               //цезарь
 	int n;
@@ -66,7 +90,7 @@ void Caesar() {               //цезарь
 		else if (c >= 'A' && c <= 'Z')
 			c = ((c - 'A' + n) % 26) + 'A';
 	}
-	cout << str;
+	cout << str << endl;
 	inFile("Caesar: " + str);
 
 }
@@ -94,7 +118,7 @@ void UnCaesar() {
 				c = ((c - 'A' - n) % 26) + 'A';
 		}
 	}
-	cout << str;
+	cout << str << endl;
 	inFile("Caesar decryption: " + str);
 }
 void DoubleTable() {             //двойная табличная
