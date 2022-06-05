@@ -3,6 +3,7 @@
 
 #include "interface.h"
 #include "keygen.h"
+#include "tableCypher.cpp"
 #include <iostream>
 #include <string>
 #include <fstream>
