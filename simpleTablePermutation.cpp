@@ -23,7 +23,7 @@ void STP() { // Simple Table Permutation
     string strIn = getString("Phrase: ", 8); // входная строка
     string strOut;
     int size = 0;
-    for (char elem : strIn) if (elem != ' ') size++;
+    for (char elem: strIn) if (elem != ' ') size++;
     pair<int, int> tabSize = tableSize(size);
     int n = tabSize.first, m = tabSize.second;
     char table[n][m];
@@ -52,7 +52,7 @@ void STP() { // Simple Table Permutation
         for (int n3 = 0; n3 < n; n3++) {
             if (count == m) {
                 strOut.push_back(' ');
-                count=0;
+                count = 0;
             }
             strOut.push_back(table[n3][m3]);
             count++;

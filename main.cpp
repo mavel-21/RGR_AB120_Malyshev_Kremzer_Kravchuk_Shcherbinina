@@ -13,6 +13,12 @@
 #include "gronsfeld.h"
 #include "polybiusSquare.h"
 #include "simpleTablePermutation.h"
+#include "atbash.h"
+#include "keywordABC.h"
+#include "tableCypher.h"
+#include "Caesar.h"
+#include "doubleTable.h"
+#include "tarab.h"
 
 using namespace std;
 
@@ -45,15 +51,17 @@ int main() {
             cout
                     << "\t1. Gronsfeld encryption\n\t2. Encryption using the square of Polybius\n\t3. Simple table permutation\n\tAny other character: go back\nChoose encryption (1-3): ";
             getline(cin, encryption_str);
-            if (encryption_str == "1" or encryption_str == "2" or encryption_str == "3") encryption = encryption_str[0] - '0';
+            if (encryption_str == "1" or encryption_str == "2" or encryption_str == "3" or encryption_str == "4" or
+                encryption_str == "5" or encryption_str == "6" or encryption_str == "7" or encryption_str == "8" or
+                encryption_str == "9")
+                encryption = encryption_str[0] - '0';
             else {
                 cout << "   [GO BACK]" << endl << endl;
                 continue;
             }
             string pinUser; // пинкод, вводимый пользователем
             switch (encryption) {
-                case 1: // шифровка Гронсфельда
-                {
+                case 1: {// шифровка Гронсфельда
                     cout << endl << "    [Gronsfeld encryption]" << endl << endl;
                     cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
@@ -64,7 +72,7 @@ int main() {
                     pinUser = "";
                     break;
                 }
-                case 2:
+                case 2: {
                     cout << endl << "    [Polybius square]" << endl << endl;
                     cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
@@ -75,7 +83,8 @@ int main() {
                     } else cout << "    [Pincode is not correct!]" << endl;
                     pinUser = "";
                     break;
-                case 3:
+                }
+                case 3: {
                     cout << endl << "    [Simple table permutation]" << endl << endl;
                     cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
@@ -85,25 +94,94 @@ int main() {
                     } else cout << "    [Pincode is not correct!]" << endl;
                     pinUser = "";
                     break;
+                }
+                case 4: {
+                    cout << endl << "    [Atbash cipher]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        atbash();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 5: {
+                    cout << endl << "    [Keyword cipher]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        keywordABC();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 6: {
+                    cout << endl << "    [Table cipher with a keyword]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        tableCypher();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 7: {
+                    cout << endl << "    [Caesar]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        Caesar();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 8: {
+                    cout << endl << "    [Double table permutation]" << endl << endl;
+                    if (pinAdmin == "0000") { // проверка того, задан ли пинкод
+                        cout << "    [Pincode not set!]" << endl;
+                        break;
+                    }
+                    string pinUser; // пинкод
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        DoubleTable();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 9: {
+                    cout << endl << "    ['Tarabarskaya gramota']" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        Tarab();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
                 default:
                     break;
             }
-        }
-        else if (dialogStr == "decrypt") {
+        } else if (dialogStr == "decrypt") {
             string decryption_str;
             int decryption;
             cout
                     << "\t1. Gronsfeld decryption\n\t2. Decryption using the square of Polybius\n\t3. Simple table permutation\n\tAny other character: go back\nChoose decryption (1-3): ";
             getline(cin, decryption_str);
-            if (decryption_str == "1" or decryption_str == "2" or decryption_str == "3") decryption = decryption_str[0] - '0';
+            if (decryption_str == "1" or decryption_str == "2" or decryption_str == "3" or decryption_str == "4" or
+                decryption_str == "5" or decryption_str == "6" or decryption_str == "7" or decryption_str == "8" or
+                decryption_str == "9")
+                decryption =
+                        decryption_str[0] -
+                        '0';
             else {
                 cout << "   [GO BACK]" << endl << endl;
                 continue;
             }
             string pinUser; // пинкод, вводимый пользователем
             switch (decryption) {
-                case 1: // расшифровка Гронсфельда
-                {
+                case 1: {// расшифровка Гронсфельда
                     cout << endl << "    [Gronsfeld decryption]" << endl << endl;
                     cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
@@ -114,7 +192,7 @@ int main() {
                     pinUser = "";
                     break;
                 }
-                case 2:
+                case 2: {
                     cout << endl << "    [Decryption by Polybius square]" << endl << endl;
                     cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
@@ -124,7 +202,8 @@ int main() {
                     } else cout << "    [Pincode is not correct!]" << endl;
                     pinUser = "";
                     break;
-                case 3:
+                }
+                case 3: {
                     cout << endl << "    [Simple table permutation]" << endl << endl;
                     cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
@@ -134,11 +213,72 @@ int main() {
                     } else cout << "    [Pincode is not correct!]" << endl;
                     pinUser = "";
                     break;
+                }
+                case 4: {
+                    cout << endl << "    [Atbash decryption]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        antiatbash();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    pinUser = "";
+                    break;
+                }
+                case 5: {
+                    cout << endl << "    [Keyword decryption]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        antikeywordABC();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 6: {
+                    cout << endl << "    [Table cipher with a keyword]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        antitableCypher();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 7: {
+                    cout << endl << "    [Caesar]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        antiCaesar();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 8: {
+                    cout << endl << "    [Double table permutation]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        antiDoubleTable();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
+                case 9: {
+                    cout << endl << "    ['Tarabarskaya gramota']" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        antiTarab();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    break;
+                }
                 default:
                     break;
             }
-        }
-        else if (dialogStr == "help") { // команда вызова списка команд
+        } else if (dialogStr == "help") { // команда вызова списка команд
             cout << "    [COMMANDS]" << endl;
             cout << "input -- Writing a line to a file;" << endl;
             cout << "get -- Displaying the contents of a file;" << endl;

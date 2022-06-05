@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include "gronsfeld.h"
 #include "interface.h"
 
@@ -8,11 +10,27 @@ using namespace std;
 void Gronsfeld() { // шифровка Гронсфельда
     string key; // ключ
     string strIn = getString("Phrase: ", 8); // входная строка
-    cout << "Enter key: ";
-    getline(cin, key);
+    int isValid = 1;
+    do {
+        isValid = 1;
+        cout << "Enter key (digits only): ";
+        try {
+            getline(cin, key);
+            key.erase(find(key.begin(), key.end(), ' '), key.end());
+            for (auto elem: key) {
+                if (!isdigit(elem)) {
+                    isValid = 0;
+                    throw ("KEY_NOT_VALID");
+                }
+            }
+        }
+        catch (...) {
+            cout << "    [INCORRECT INPUT]" << endl;
+        }
+    } while (isValid == 0);
     inFile("Key: " + key); // получение и запись ключа в файл
     string strOut; // выходная строка
-    int keyArr[key.length()];
+    vector<int> keyArr(key.length());
     for (int i = 0; i < key.length(); i++) {
         keyArr[i] = key[i] - '0';
     }
@@ -24,6 +42,10 @@ void Gronsfeld() { // шифровка Гронсфельда
             count--;
             continue;
         } else {
+            if (!isalpha(strIn[i])) {
+                strOut.push_back(strIn[i]);
+                continue;
+            }
             char c;
             if (strIn[i] >= 'a' and strIn[i] <= 'z' and strIn[i] + keyArr[count] > 'z')
                 c = strIn[i] + keyArr[count] - ('z' - 'a' +
@@ -40,7 +62,7 @@ void Gronsfeld() { // шифровка Гронсфельда
 
 void antiGronsfeld() {
     string key_str = getString("Key: ", 5);
-    int keyArr[key_str.length()];
+    vector<int> keyArr(key_str.length());
     for (int i = 0; i < key_str.length(); i++) {
         keyArr[i] = key_str[i] - '0';
     }
@@ -53,6 +75,10 @@ void antiGronsfeld() {
             count--;
             continue;
         } else {
+            if (!isalpha(strIn[i])) {
+                strOut.push_back(strIn[i]);
+                continue;
+            }
             char c;
             if (strIn[i] >= 'a' and strIn[i] <= 'z' and strIn[i] - keyArr[count] < 'a')
                 c = strIn[i] - keyArr[count] + ('z' - 'a' +
@@ -64,5 +90,5 @@ void antiGronsfeld() {
             strOut.push_back(c); // добавление шифрованного символа в строку
         }
     }
-    inFile("Decryption Gronsfeld: " + strOut); // запись строки в файл
+    inFile("Decryption: " + strOut); // запись строки в файл
 }
