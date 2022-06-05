@@ -1,0 +1,7 @@
+Phrase: Simple Table Permutation
+Columns: 11
+Lines: 2
+S	m	l	T	b	e	e	m	t	t	o	
+i	p	e	a	l	P	r	u	a	i	n	
+Simple table permutation: Sm lT be em tt oi pe al Pr ua in
+Simple table permutation decryption: SimpleTablePermutation
