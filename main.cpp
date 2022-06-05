@@ -49,7 +49,7 @@ int main() {
             string encryption_str;
             int encryption;
             cout
-                    << "\t1. Gronsfeld encryption\n\t2. Encryption using the square of Polybius\n\t3. Simple table permutation\n\tAny other character: go back\nChoose encryption (1-3): ";
+                    << "\t1. Gronsfeld cipher\n\t2. Encryption using the square of Polybius\n\t3. Simple table permutation\n\t4. Atbash cipher\n\t5. Keyword cipher\n\t6. Table cipher with a keyword\n\t7. Caesar cipher\n\t8. Double table permutation\n\t9. 'Tarabarskaya gramota'\n\tAny other character: go back\nChoose encryption (1-9): ";
             getline(cin, encryption_str);
             if (encryption_str == "1" or encryption_str == "2" or encryption_str == "3" or encryption_str == "4" or
                 encryption_str == "5" or encryption_str == "6" or encryption_str == "7" or encryption_str == "8" or
@@ -137,11 +137,6 @@ int main() {
                 }
                 case 8: {
                     cout << endl << "    [Double table permutation]" << endl << endl;
-                    if (pinAdmin == "0000") { // проверка того, задан ли пинкод
-                        cout << "    [Pincode not set!]" << endl;
-                        break;
-                    }
-                    string pinUser; // пинкод
                     cout << "Please enter the pincode: ";
                     getline(cin, pinUser); // ввод пинкода
                     if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
@@ -167,7 +162,7 @@ int main() {
             string decryption_str;
             int decryption;
             cout
-                    << "\t1. Gronsfeld decryption\n\t2. Decryption using the square of Polybius\n\t3. Simple table permutation\n\tAny other character: go back\nChoose decryption (1-3): ";
+                    << "\t1. Gronsfeld cipher\n\t2. Decryption using the square of Polybius\n\t3. Simple table permutation\n\t4. Atbash cipher\n\t5. Keyword cipher\n\t6. Table cipher with a keyword\n\t7. Caesar cipher\n\t8. Double table permutation\n\t9. 'Tarabarskaya gramota'\n\tAny other character: go back\nChoose decryption (1-9): ";
             getline(cin, decryption_str);
             if (decryption_str == "1" or decryption_str == "2" or decryption_str == "3" or decryption_str == "4" or
                 decryption_str == "5" or decryption_str == "6" or decryption_str == "7" or decryption_str == "8" or

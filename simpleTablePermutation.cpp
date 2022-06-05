@@ -12,6 +12,7 @@ pair<int, int> tableSize(int size) {
         if (size % m1 == 0) {
             n = size / m1;
             m = m1;
+            break;
         }
     }
     pair<int, int> tabSize{n, m};
@@ -26,7 +27,7 @@ void STP() { // Simple Table Permutation
     for (char elem: strIn) if (elem != ' ') size++;
     pair<int, int> tabSize = tableSize(size);
     int n = tabSize.first, m = tabSize.second;
-    char table[n][m];
+    vector<vector<char>> table(n, vector<char>(m));
     int n1 = 0, m1 = 0; // n - столбец и m - строка
     for (char letter: strIn) {
         if (letter != ' ') {
@@ -70,7 +71,7 @@ void antiSTP() {
     n = stoi(convert); // столбцов
     convert = getString("Lines: ", 7);
     m = stoi(convert); // строк
-    char table[n][m];
+    vector<vector<char>> table(n, vector<char>(m));
     int n1 = 0, m1 = 0;
     for (char letter: strIn) {
         if (letter != ' ') {
