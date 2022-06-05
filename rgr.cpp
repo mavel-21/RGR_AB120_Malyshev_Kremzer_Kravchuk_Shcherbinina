@@ -58,6 +58,11 @@ void Gronsfeld() { // шифровка Гронсфельда
             continue;
         }
         else {
+            if (!isalpha(strIn[i]))
+            {
+                strOut.push_back(strIn[i]);
+                continue;
+            }
             char c;
             if (strIn[i] >= 'a' and strIn[i] <= 'z' and strIn[i] + keyArr[count] > 'z')
                 c = strIn[i] + keyArr[count] - ('z' - 'a' +
@@ -88,6 +93,11 @@ void antiGronsfeld() {
             continue;
         }
         else {
+            if (!isalpha(strIn[i]))
+            {
+                strOut.push_back(strIn[i]);
+                continue;
+            }
             char c;
             if (strIn[i] >= 'a' and strIn[i] <= 'z' and strIn[i] - keyArr[count] < 'a')
                 c = strIn[i] - keyArr[count] + ('z' - 'a' +
