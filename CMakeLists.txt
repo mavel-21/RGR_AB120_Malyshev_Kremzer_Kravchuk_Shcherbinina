@@ -3,4 +3,4 @@ project(progRgr)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(progRgr main.cpp gronsfeld.cpp gronsfeld.h interface.cpp interface.h polybiusSquare.cpp polybiusSquare.h)
+add_executable(progRgr main.cpp gronsfeld.cpp gronsfeld.h interface.cpp interface.h polybiusSquare.cpp polybiusSquare.h simpleTablePermutation.cpp simpleTablePermutation.h)

@@ -10,4 +10,4 @@ using namespace std;
 void Gronsfeld();
 void antiGronsfeld();
 
-#endif //MAIN_CPP_GRONSFELD_H
+#endif

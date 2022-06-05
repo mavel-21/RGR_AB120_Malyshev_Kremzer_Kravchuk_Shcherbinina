@@ -12,4 +12,4 @@ void PolybiusSquare();
 char PolybiusToChar(char first, char second, const vector<pair<char, pair<int, int>>>& vec);
 void antiPolybiusSquare();
 
-#endif //MAIN_CPP_POLYBIUSSQUARE_H
+#endif

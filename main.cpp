@@ -9,9 +9,10 @@
 
 #include <iostream>
 #include <string>
-#include "gronsfeld.h"
 #include "interface.h"
+#include "gronsfeld.h"
 #include "polybiusSquare.h"
+#include "simpleTablePermutation.h"
 
 using namespace std;
 
@@ -75,6 +76,14 @@ int main() {
                     pinUser = "";
                     break;
                 case 3:
+                    cout << endl << "    [Simple table permutation]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        STP();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    pinUser = "";
                     break;
                 default:
                     break;
@@ -116,6 +125,14 @@ int main() {
                     pinUser = "";
                     break;
                 case 3:
+                    cout << endl << "    [Simple table permutation]" << endl << endl;
+                    cout << "Please enter the pincode: ";
+                    getline(cin, pinUser); // ввод пинкода
+                    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+                        cout << "    [Pincode validation passed successfully!]" << endl;
+                        antiSTP();
+                    } else cout << "    [Pincode is not correct!]" << endl;
+                    pinUser = "";
                     break;
                 default:
                     break;
