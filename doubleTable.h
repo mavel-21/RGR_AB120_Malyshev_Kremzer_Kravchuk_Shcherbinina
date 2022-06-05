@@ -2,7 +2,7 @@
 #define MAIN_CPP_DOUBLETABLE_H
 
 #include "interface.h"
-
+#include "doubleTable.cpp"
 #include <iostream>
 #include <fstream>
 #include <string>
