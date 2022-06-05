@@ -66,11 +66,11 @@ void Tarab() {
             }
         stOut += word[i];
     }
-    inFile("Tarabarskaya: " + stOut);
+    inFile("Phrase: " + stOut);
 }
 
 void antiTarab() {
-    string word = getString("Tarabarskaya: ", 14);
+    string word = getString("Phrase: ", 8);
     int k = word.size();
     string stOut = "";
     for (int i = 0; i < k; i++) {
@@ -127,5 +127,5 @@ void antiTarab() {
             }
         stOut += word[i];
     }
-    inFile("Tarabarskaya decryption: " + stOut);
+    inFile("Phrase: " + stOut);
 }

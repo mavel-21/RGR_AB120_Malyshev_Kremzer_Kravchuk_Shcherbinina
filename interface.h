@@ -11,7 +11,7 @@ void inFile(const string& inStr);
 void clearFile();
 void getFile();
 string getString(const string& mark, int pos_n);
-bool checkString(const string& mark);
 bool checkPincode(const string& pinUser, const string& pinAdmin);
+void randomText();
 
 #endif //MAIN_CPP_INTERFACE_H

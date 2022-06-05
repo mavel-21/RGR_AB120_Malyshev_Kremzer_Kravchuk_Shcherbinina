@@ -6,17 +6,14 @@
 using namespace std;
 
 void square() {
-    inFile("Polybius Square:");
     string line;
     line = "\t1\t2\t3\t4\t5";
-    inFile(line);
     line = "";
     line = '1';
     for (char c = 'A'; c <= 'E'; c++) {
         line += '\t';
         line += c;
     }
-    inFile(line);
     line = "";
     line = '2';
     for (char c = 'F'; c <= 'K'; c++) {
@@ -26,28 +23,24 @@ void square() {
         }
         else line += c;
     }
-    inFile(line);
     line = "";
     line = '3';
     for (char c = 'L'; c <= 'P'; c++) {
         line += '\t';
         line += c;
     }
-    inFile(line);
     line = "";
     line = '4';
     for (char c = 'Q'; c <= 'U'; c++) {
         line += '\t';
         line += c;
     }
-    inFile(line);
     line = "";
     line = '5';
     for (char c = 'V'; c <= 'Z'; c++) {
         line += '\t';
         line += c;
     }
-    inFile(line);
 }
 
 int charToPolybius(char c, const vector<pair<char, pair<int, int>>>& vec) {
@@ -88,14 +81,14 @@ void PolybiusSquare() {
     for (int i = 0; i < strIn.length(); i++) {
         if (strIn[i] >= 'A' and strIn[i] <= 'Z') upperSymbol+= to_string(i);
     }
-    inFile("Capital characters: " + upperSymbol);
+    outFile("Capital characters: " + upperSymbol);
     for (char elem : strIn) {
         elem = tolower(elem);
         int numPol = charToPolybius(elem, polybius);
         if (elem != ' ') strOut+=to_string(numPol);
         else strOut.push_back(' ');
     }
-    inFile("Polybius: " +strOut);
+    inFile("Phrase: " +strOut);
 }
 
 char PolybiusToChar(char first, char second, const vector<pair<char, pair<int, int>>>& vec) {
@@ -130,10 +123,10 @@ void antiPolybiusSquare() {
         polybius.push_back(sqPol);
     }
 
-    string strIn = getString("Polybius: ", 10); // входная строка
+    string strIn = getString("Phrase: ", 8); // входная строка
     string strOut;
     char letter;
-    string upperSymbol = getString("Capital characters: ", 20);
+    string upperSymbol = getKey("Capital characters: ", 20);
     vector<int> symUp;
     for (char i : upperSymbol) {
         symUp.push_back(i - '0');
@@ -166,5 +159,5 @@ void antiPolybiusSquare() {
             }
         }
     }
-    inFile("Decryption Polybius square: " + strOut);
+    inFile("Phrase: " + strOut);
 }

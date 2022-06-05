@@ -11,7 +11,7 @@ void keywordABC() {
     string keyword; // ключ
     string line = getString("Phrase: ", 8); // входная строка
     keyword = getKey();
-    inFile("Key: " + keyword);
+    outFile("Key: " + keyword);
     string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     vector<char> newABC;
     int ind = 0;
@@ -32,12 +32,12 @@ void keywordABC() {
             else line[i] = tolower(newABC[ind]);
         }
     }
-    inFile("Keyword cipher: " + line);
+    inFile("Phrase: " + line);
 }
 
 void antikeywordABC() {
-    string keyword = getString("Key: ", 5);
-    string line = getString("Keyword cipher: ", 16);
+    string keyword = getKey("Key: ", 5);
+    string line = getString("Phrase: ", 8);
     string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     vector<char> newABC;
     int ind = 0;
@@ -59,5 +59,5 @@ void antikeywordABC() {
             else line[i] = tolower(abc[ind]);
         }
     }
-    inFile("Decryption: " + line);
+    inFile("Phrase: " + line);
 }

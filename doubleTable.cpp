@@ -75,8 +75,7 @@ void DoubleTable() {
             cout << "Text length: " << st.size() << endl << endl;
         }
     }
-    inFile("Key 1: " + kl);
-    inFile("Key 2: " + kl2);
+    outFile("Key 1: " + kl + "\nKey 2: " + kl2);
     vector <vector<char>> v(m, vector<char>(n));
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
@@ -121,16 +120,16 @@ void DoubleTable() {
         }
 
     }
-    inFile("DoubleTable: " + stOut);
+    inFile("Phrase: " + stOut);
 }
 
 void antiDoubleTable() {
     char x;
     int n, m, k;
     string stOut = "";
-    string st = getString("DoubleTable: ", 13);
-    string kl = getString("Key 1: ", 7);
-    string kl2 = getString("Key 2: ", 7);
+    string st = getString("Phrase: ", 8);
+    string kl = getKey("Key 1: ", 7);
+    string kl2 = getKey("Key 2: ", 7);
     string kk = kl;
     string kk2 = kl2;
     n = kl.size();
@@ -188,5 +187,5 @@ void antiDoubleTable() {
             stOut += vtt[i][j];
         }
     }
-    inFile("DoubleTable decryption: " + stOut);
+    inFile("Phrase: " + stOut);
 }

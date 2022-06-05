@@ -12,11 +12,10 @@ pair<int, int> tableSize(int size) {
         if (size % m1 == 0) {
             n = size / m1;
             m = m1;
-            break;
         }
     }
     pair<int, int> tabSize{n, m};
-    inFile("Columns: " + to_string(tabSize.first) + "\nLines: " + to_string(tabSize.second));
+    outFile("Columns: " + to_string(tabSize.first) + "\nLines: " + to_string(tabSize.second));
     return tabSize;
 }
 
@@ -27,7 +26,7 @@ void STP() { // Simple Table Permutation
     for (char elem: strIn) if (elem != ' ') size++;
     pair<int, int> tabSize = tableSize(size);
     int n = tabSize.first, m = tabSize.second;
-    vector<vector<char>> table(n, vector<char>(m));
+    vector <vector<char>> table(n, vector<char>(m));
     int n1 = 0, m1 = 0; // n - столбец и m - строка
     for (char letter: strIn) {
         if (letter != ' ') {
@@ -45,7 +44,6 @@ void STP() { // Simple Table Permutation
             tab += table[n2][m2];
             tab += '\t';
         }
-        inFile(tab);
     }
 
     int count = 0;
@@ -59,19 +57,19 @@ void STP() { // Simple Table Permutation
             count++;
         }
     }
-    inFile("Simple table permutation: " + strOut); // запись строки в файл
+    inFile("Phrase: " + strOut); // запись строки в файл
 }
 
 void antiSTP() {
-    string strIn = getString("Simple table permutation: ", 26); // входная строка
+    string strIn = getString("Phrase: ", 8); // входная строка
     string strOut;
     int n, m;
     string convert;
-    convert = getString("Columns: ", 9);
+    convert = getKey("Columns: ", 9);
     n = stoi(convert); // столбцов
-    convert = getString("Lines: ", 7);
+    convert = getKey("Lines: ", 7);
     m = stoi(convert); // строк
-    vector<vector<char>> table(n, vector<char>(m));
+    vector <vector<char>> table(n, vector<char>(m));
     int n1 = 0, m1 = 0;
     for (char letter: strIn) {
         if (letter != ' ') {
@@ -88,5 +86,5 @@ void antiSTP() {
             strOut.push_back(table[n3][m3]);
         }
     }
-    inFile("Simple table permutation decryption: " + strOut); // запись строки в файл
+    inFile("Phrase: " + strOut); // запись строки в файл
 }

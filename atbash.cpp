@@ -20,11 +20,11 @@ void atbash() {
             }
         }
     }
-    inFile("Atbash cipher: " + line);
+    inFile("Phrase: " + line);
 }
 
 void antiatbash() {
-    string line = getString("Atbash cipher: ", 15);
+    string line = getString("Phrase: ", 8);
     string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     string cab = "ZYXWVUTSRQPONMLKJIHGFEDCBA";
     int strSize = line.size(), ind = 0;
@@ -39,5 +39,5 @@ void antiatbash() {
             }
         }
     }
-    inFile("Decryption: " + line);
+    inFile("Phrase:" + line);
 }

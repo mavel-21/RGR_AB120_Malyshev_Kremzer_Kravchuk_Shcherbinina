@@ -27,20 +27,21 @@ int isKeyValid(string word) {
 
 string getKey() {
     setlocale(LC_ALL, "Russian");
-    string keyword, enter = "Введите ключевое слово, состоящее только из неповторяющихся символов латинского алфавита:",
-            err = "Некорректный ввод!";
-    do {
+    string keyword;
+    do
+    {
         try {
-            cout << enter << endl;
+            cout << "Enter a key (non-repetative latin letters only): ";
             getline(cin, keyword);
             keyword.erase(find(keyword.begin(), keyword.end(), ' '), keyword.end());
             if (sameLetters(keyword) != 0)
-                throw ("KEY_SAME_LETTERS");
+                throw("KEY_SAME_LETTERS");
             if (isKeyValid(keyword) == 0)
-                throw ("KEY_NOT_VALID");
+                throw("KEY_NOT_VALID");
         }
-        catch (...) {
-            cout << err << endl << endl;
+        catch (...)
+        {
+            cout << "    [INCORRECT INPUT]" << endl;
         }
     } while ((sameLetters(keyword) != 0) || (isKeyValid(keyword) == 0));
     return keyword;

@@ -28,8 +28,8 @@ void Caesar() {
         }
     }
     string str = getString("Phrase: ", 8);
-    inFile("Key: " + to_string(n));
     n = n % 26;
+    outFile("Key: " + to_string(n));
     for (auto &c: str) {
         if (c <= 'a' && c >= 'z' || c <= 'A' && c >= 'Z') {
             continue;
@@ -39,12 +39,12 @@ void Caesar() {
         else if (c >= 'A' && c <= 'Z')
             c = ((c - 'A' + n) % 26) + 'A';
     }
-    inFile("Caesar: " + str);
+    inFile("Phrase: " + str);
 }
 
 void antiCaesar() {
-    int n = stoi(getString("Key: ", 5));
-    string str = getString("Caesar: ", 8);
+    int n = stoi(getKey("Key: ", 5));
+    string str = getString("Phrase: ", 8);
     n = n % 26;
     for (auto &c: str) {
         if (c <= 'a' && c >= 'z' || c <= 'A' && c >= 'Z') {
@@ -62,5 +62,5 @@ void antiCaesar() {
                 c = ((c - 'A' - n) % 26) + 'A';
         }
     }
-    inFile("Caesar decryption: " + str);
+    inFile("Phrase: " + str);
 }

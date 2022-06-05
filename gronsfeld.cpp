@@ -28,7 +28,7 @@ void Gronsfeld() { // шифровка Гронсфельда
             cout << "    [INCORRECT INPUT]" << endl;
         }
     } while (isValid == 0);
-    inFile("Key: " + key); // получение и запись ключа в файл
+    outFile("Key: " + key);
     string strOut; // выходная строка
     vector<int> keyArr(key.length());
     for (int i = 0; i < key.length(); i++) {
@@ -57,16 +57,16 @@ void Gronsfeld() { // шифровка Гронсфельда
             strOut.push_back(c); // добавление шифрованного символа в строку
         }
     }
-    inFile("Gronsfeld: " + strOut); // запись строки в файл
+    inFile("Phrase: " + strOut); // запись строки в файл
 }
 
 void antiGronsfeld() {
-    string key_str = getString("Key: ", 5);
+    string key_str = getKey("Key: ", 5);
     vector<int> keyArr(key_str.length());
     for (int i = 0; i < key_str.length(); i++) {
         keyArr[i] = key_str[i] - '0';
     }
-    string strIn = getString("Gronsfeld: ", 11); // входная строка
+    string strIn = getString("Phrase: ", 8); // входная строка
     string strOut; // выходная строка
     for (int i = 0, count = 0; i < strIn.length(); i++, count++) {
         if (count == key_str.length()) count = 0; // сброс счётчика ключа
@@ -90,5 +90,5 @@ void antiGronsfeld() {
             strOut.push_back(c); // добавление шифрованного символа в строку
         }
     }
-    inFile("Decryption: " + strOut); // запись строки в файл
+    inFile("Phrase: " + strOut); // запись строки в файл
 }

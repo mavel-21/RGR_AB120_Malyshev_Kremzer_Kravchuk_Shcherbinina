@@ -7,7 +7,14 @@ using namespace std;
 
 void inFile(const string& inStr) { // функция записи строки в файл
     ofstream file;
-    file.open("input.txt", ofstream::app); // открыть файл
+    file.open("input.txt"); // открыть файл
+    file << inStr << endl; // запись строки в файл
+    file.close(); // закрыть файл
+}
+
+void outFile(const string& inStr) { // функция записи строки в файл
+    ofstream file;
+    file.open("info.txt"); // открыть файл
     file << inStr << endl; // запись строки в файл
     file.close(); // закрыть файл
 }
@@ -31,7 +38,23 @@ void getFile() { // функция получения содержимого ф�
 string getString(const string& mark, int pos_n) { // функция получения фразы из файла
     ifstream file;
     string line, str_out;
-    file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt"); // открыть файл
+    file.open("input.txt"); // открыть файл
+    while (getline(file, line)) { // пока в файле есть строки
+        int checkMark = line.find(mark);
+        if (checkMark > -1) {
+            str_out = line.substr(
+                    pos_n); // если строка содержит метку, в переменную phrase записать содержимое строки из файла после этой метки
+            break;
+        }
+    }
+    file.close(); // закрыть файл
+    return str_out; // вывести фразу
+}
+
+string getKey(const string& mark, int pos_n) { // функция получения фразы из файла
+    ifstream file;
+    string line, str_out;
+    file.open("info.txt"); // открыть файл
     while (getline(file, line)) { // пока в файле есть строки
         int checkMark = line.find(mark);
         if (checkMark > -1) {
@@ -47,7 +70,7 @@ string getString(const string& mark, int pos_n) { // функция получе
 bool checkString(const string& mark) {
     ifstream file;
     string line;
-    file.open("/home/pavel/Документы/Уник/Информатика/progRgr/encryptions.txt"); // открыть файл
+    file.open("input.txt"); // открыть файл
     while (getline(file, line)) { // пока в файле есть строки
         if (line.find(mark) >= 0) {
             return true;
