@@ -31,8 +31,27 @@ int main() {
         getline(cin, dialogStr); // ввод команды
         if (dialogStr == "input") { // команда ввода фразы в файл
             string str; // строка
-            cout << "Enter a string: ";
-            getline(cin, str); // ввод строки (фразы)
+            int isValid = 0;
+            while (isValid == 0)
+            {
+                isValid = 1;
+                try {
+                    cout << "Enter a string: ";
+                    getline(cin, str); // ввод строки (фразы)
+                    for (char elem : str)
+                    {
+                        if ((elem < 0) || (elem > 255))
+                        {
+                            isValid = 0;
+                            throw("INCORRECT_INPUT");
+                        }
+                    }
+                }
+                catch (...)
+                {
+                    cout << "    [ERROR] Line contains non-ASCII characters. Please try again.\n";
+                }
+            }
             inFile("Phrase: " + str); //запись этой строки (фразы) в файл
             cout << "    [THE FILE HAS BEEN UPDATED]" << endl << endl;
         }
