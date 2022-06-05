@@ -3,6 +3,7 @@
 
 #include "interface.h"
 #include "keygen.h"
+#include "keywordABC.cpp"
 #include <string>
 #include <vector>
 #include <algorithm>
