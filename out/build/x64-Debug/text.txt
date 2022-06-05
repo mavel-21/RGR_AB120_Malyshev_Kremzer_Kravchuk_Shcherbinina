@@ -1,4 +1,21 @@
-Phrase: dfrwere werwer
-Key: 4
-Caesar: hjvaivi aivaiv
-Caesar decryption: dfrwere werwer
+Phrase: fdwfwrg
+Key 1: frfr
+Key 2: grg
+Key 1: dfejf
+Key 2: dfdf
+Key 1: dfdf
+Key 2: dd
+Key 1: dfdfdf
+Key 2: dfd
+Key 1: fghhj
+Key 2: fgtg
+Key 1: dfghjkl
+Key 2: ghj
+Key 1: dfdfdf
+Key 2: dfdfdf
+Key 1: ggtg
+Key 2: gtgt
+Key 1: qwertyu
+Key 2: q
+DoubleTable: wffwgdr
+Tarabarskaya: rqkrkfs

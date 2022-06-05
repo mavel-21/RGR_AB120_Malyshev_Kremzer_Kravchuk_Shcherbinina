@@ -56,6 +56,7 @@ void getFile() { // функция получения содержимого файла
 	}
 	file.close(); // закрыть файл
 }
+
 void Caesar() {               //цезарь
 	int n;
 	while (true) {
@@ -100,7 +101,7 @@ void UnCaesar() {
 	n = n % 26;
 	for (auto& c : str)
 	{
-		if (c <= 'a' && c >= 'z' || c <= 'A' && c >= 'Z') {
+		if (c < 'a' && c > 'z' || c < 'A' && c > 'Z') {
 			continue;
 		}
 		if (c >= 'a' && c <= 'z') {
@@ -122,33 +123,64 @@ void UnCaesar() {
 	inFile("Caesar decryption: " + str);
 }
 void DoubleTable() {             //двойная табличная
-	string st, kl, kk, kl2, kk2, stOut = "";
+	string st, kk2,kl,kl2 ,kk, stOut = "";
 	char x;
-	int n, m, k;
+	int n, m, k,c = 0;
 	k = 0;
 	st = getString("Phrase: ", 8);
-	
-	for (int i = 0; i < 3; i++) {
-		cout << "Enter first key: ";
+	int esc = 0;
+	while (true) {
+		cout << "Enter first key(word): ";
 		cin >> kl;
-		cout << "Enter second key: ";
+		cout << "Enter second key(word): ";
 		cin >> kl2;
 		kk = kl;
 		kk2 = kl2;
 		n = size(kl);
 		m = size(kl2);
-		try {
-			if (m * n != size(st))
-				throw 1;
-			break;
+		for (auto& s : kl) {
+			if ('A' <= s && s <= 'z') {
+				cin.ignore(INT_MAX, '\n');
+				esc = 1;
+				break;
+			}
+			else {
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "Key must be a word in latin" << endl;
+				break;
+			}
 		}
-		catch (...) {
-			cout << "Keys must match text size!" << endl;
-			cout << "Text size: " << size(st) << endl;;
+		for (auto& s : kl2) {
+			if ('A' <= s && s <= 'z') {
+				cin.ignore(INT_MAX, '\n');
+				esc = 1;
+				break;
+			}
+			else {
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "Key must be a word in latin" << endl;
+				break;
+			}
 		}
-		if (i == 2)
-			exit(0);
+		if (esc == 1) {
+
+			try {
+				if (m * n != size(st))
+					throw 1;
+				break;
+			}
+			catch (...) {
+				cout << "Keys must match text size!" << endl;
+				cout << "Text size: " << size(st) << endl;
+			}
+
+		}
+		
+		
 	}
+		
 	inFile("Key 1: " + kl);
 	inFile("Key 2: " + kl2);
 	vector <vector <char>> v(m, vector <char>(n));

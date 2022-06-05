@@ -54,7 +54,7 @@ int main() {
                 continue;
             }
             switch (cipher) {
-                case 1: // шифровка Гронсфельда
+               /*case 1: // шифровка Гронсфельда
                 {
                     cout << endl << "    [Gronsfeld cipher]" << endl << endl;
                     if (pinAdmin == "0000") { // проверка того, задан ли пинкод
@@ -74,7 +74,7 @@ int main() {
                 case 2:
                     break;
                 case 3:
-                    break;
+                    break;*/
             case 4:
             {
                 cout << endl << "    [Caesar cirher]" << endl << endl;
