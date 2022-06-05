@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "polybiusSquare.cpp"
 #include "interface.h"
 
 using namespace std;
