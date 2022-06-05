@@ -458,12 +458,16 @@ void antiCaesar() {
 void DoubleTable() {            
     string st, kl, kk, kl2, kk2, stOut = "";
     char x;
-    int n, m, k, flag = 0;;
+    int n, m, k, flag = 0, isPrime = 1;
     k = 0;
     st = getString("Phrase: ", 8);
-    if (size(st) % 2 != 0)
+    if (size(st) <= 1) isPrime = 0;
+    for (int i = 2; i < size(st); i++)
+        if (size(st) % i == 0)
+            isPrime = 0;
+    if (isPrime)
     {
-        cout << "   [ERROR] Can't use Double table permutation with a text of uneven length! Length of text is: " << size(st) << endl << endl;
+        cout << "   [ERROR] Can't use Double table permutation with a text of length which is a prime number! Length of text is: " << size(st) << endl << endl;
         return;
     }
     while (flag == 0)
@@ -515,7 +519,7 @@ void DoubleTable() {
             }
         }
         catch (...) {
-            cout << "Incorrect keys! Note the rules:\n1) Length of key 1 * length of key 2 should be equal to text length!\n2) Key must contain only numbers!\n3)Digits of key shouldn't be more than length of key!" << endl;
+            cout << "Incorrect keys! Note the rules:\n1) Length of key 1 * length of key 2 should be equal to text length!\n2) Key must contain only numbers!\n3) Digits of key shouldn't be greater than length of key!" << endl;
             cout << "Example: Text length = 12, Key 1 = 1324, Key 2 = 132" << endl;
             cout << "Text length: " << size(st) << endl << endl;
         }
