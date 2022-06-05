@@ -1,5 +1,11 @@
-Phrase: bobobo
-Key: 16
-Gronsfeld: cucucu
-Decryption: Tr
-Decryption: Tr
+Phrase: IndIana in my heart
+Polybius Square:
+	1	2	3	4	5
+1	A	B	C	D	E
+2	F	G	H	IJ	K
+3	L	M	N	O	P
+4	Q	R	S	T	U
+5	V	W	X	Y	Z
+Capital characters: 03
+Polybius: 24331424113311 2433 3254 2315114244
+Decryption Polybius square: I(J)ndI(J)ana i(j)n my heart
