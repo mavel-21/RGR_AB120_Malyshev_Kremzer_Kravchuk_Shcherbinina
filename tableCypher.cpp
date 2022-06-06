@@ -92,7 +92,7 @@ void antitableCypher() {
     sort(keyword.begin(), keyword.end());
     for (size_t i = 0; i < keyword.size(); i++)
         cyphertext[i][0] = keyword[i];
-    for (size_t j = 1; j < keyword.size(); j++)
+    for (size_t j = 1; j < stSize; j++)
     {
         for (size_t i = 0; i < keyword.size(); i++)
         {
@@ -109,10 +109,9 @@ void antitableCypher() {
     {
         for (size_t j = 1; j < cyphertext[i].size(); j++)
         {
-            if (cyphertext[i][j] == ' ') 
-                continue;
             phrase.push_back(cyphertext[i][j]);
         }
     }
+    phrase.erase(remove(phrase.begin(), phrase.end(), '_'), phrase.end());
     inFile("Phrase: " + phrase);
 }
