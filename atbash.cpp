@@ -39,5 +39,5 @@ void antiatbash() {
             }
         }
     }
-    inFile("Phrase:" + line);
+    inFile("Phrase: " + line);
 }
