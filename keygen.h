@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "keygen.cpp"
 
 using namespace std;
 
