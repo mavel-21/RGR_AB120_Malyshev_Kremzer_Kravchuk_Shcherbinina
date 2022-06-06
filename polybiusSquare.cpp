@@ -85,7 +85,7 @@ void PolybiusSquare() {
     for (char elem : strIn) {
         elem = tolower(elem);
         int numPol = charToPolybius(elem, polybius);
-        if (elem != ' ' and elem != ',', and elem != '.' and elem != '!', and elem != '?') strOut+=to_string(numPol);
+        if (elem != ' ' && elem != ',' && elem != '\'' && elem != '.' && elem != '!' && elem != '?' && elem != '\"' && elem != ';' && elem != ')' && elem != '(' && elem != '-') strOut += to_string(numPol);
         else strOut.push_back(' ');
     }
     inFile("Phrase: " +strOut);
