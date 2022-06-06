@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include "gronsfeld.cpp"
 #include "interface.h"
 
 using namespace std;
