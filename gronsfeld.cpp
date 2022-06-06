@@ -47,10 +47,10 @@ void Gronsfeld() { // шифровка Гронсфельда
                 continue;
             }
             char c;
-            if (strIn[i] >= 'a' and strIn[i] <= 'z' and strIn[i] + keyArr[count] > 'z')
+            if (strIn[i] >= 'a' && strIn[i] <= 'z' && strIn[i] + keyArr[count] > 'z')
                 c = strIn[i] + keyArr[count] - ('z' - 'a' +
                                                 1); // устранение бага появления неподходящих символов (десятичный код которых больший 122)
-            else if (strIn[i] >= 'A' and strIn[i] <= 'Z' and strIn[i] + keyArr[count] > 'Z')
+            else if (strIn[i] >= 'A' && strIn[i] <= 'Z' && strIn[i] + keyArr[count] > 'Z')
                 c = strIn[i] + keyArr[count] - ('Z' - 'A' +
                                                 1); // устранение бага появления неподходящих символов (десятичный код которых больший 90 и меньший 97)
             else c = strIn[i] + keyArr[count];
@@ -80,10 +80,10 @@ void antiGronsfeld() {
                 continue;
             }
             char c;
-            if (strIn[i] >= 'a' and strIn[i] <= 'z' and strIn[i] - keyArr[count] < 'a')
+            if (strIn[i] >= 'a' && strIn[i] <= 'z' && strIn[i] - keyArr[count] < 'a')
                 c = strIn[i] - keyArr[count] + ('z' - 'a' +
                                                 1); // устранение бага появления неподходящих символов (десятичный код которых больший 122)
-            else if (strIn[i] >= 'A' and strIn[i] <= 'Z' and strIn[i] + keyArr[count] < 'A')
+            else if (strIn[i] >= 'A' && strIn[i] <= 'Z' && strIn[i] + keyArr[count] < 'A')
                 c = strIn[i] - keyArr[count] + ('Z' - 'A' +
                                                 1); // устранение бага появления неподходящих символов (десятичный код которых больший 90 и меньший 97)
             else c = strIn[i] - keyArr[count];
