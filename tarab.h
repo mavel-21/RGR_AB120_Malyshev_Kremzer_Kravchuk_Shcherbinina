@@ -2,7 +2,6 @@
 #define MAIN_CPP_TARAB_H
 
 #include "interface.h"
-#include "tarab.cpp"
 #include <iostream>
 #include <string>
 #include <fstream>
