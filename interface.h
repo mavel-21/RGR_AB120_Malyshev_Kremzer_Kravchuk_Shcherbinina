@@ -2,7 +2,6 @@
 #define MAIN_CPP_INTERFACE_H
 
 #include <iostream>
-#include "interface.cpp"
 #include <fstream>
 #include <string>
 
