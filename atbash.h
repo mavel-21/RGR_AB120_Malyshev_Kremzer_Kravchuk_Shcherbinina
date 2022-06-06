@@ -3,7 +3,6 @@
 
 #include <string>
 #include "interface.h"
-#include "atbash.cpp"
 
 using namespace std;
 
