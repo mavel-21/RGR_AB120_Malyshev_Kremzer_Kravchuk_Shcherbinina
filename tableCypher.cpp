@@ -39,7 +39,7 @@ void tableCypher() {
     outFile("Key: " + keyword);
     int counter = 0, stSize;
     for (auto c: keyword) c = toupper(c);
-    line.erase(remove(line.begin(), line.end(), ' '), line.end());
+    replace(line.begin(), line.end(), ' ', '_');
     if ((line.size() + keyword.size()) % keyword.size() == 0)
         stSize = ((line.size() + keyword.size()) / keyword.size());
     else stSize = ((line.size() + keyword.size()) / keyword.size()) + 1;
@@ -112,6 +112,6 @@ void antitableCypher() {
             phrase.push_back(cyphertext[i][j]);
         }
     }
-    phrase.erase(remove(phrase.begin(), phrase.end(), '_'), phrase.end());
+    replace(phrase.begin(), phrase.end(), '_', ' ');
     inFile("Phrase: " + phrase);
 }
