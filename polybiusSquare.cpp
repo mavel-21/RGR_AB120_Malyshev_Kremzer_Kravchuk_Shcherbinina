@@ -79,7 +79,7 @@ void PolybiusSquare() {
     string strOut;
     string upperSymbol;
     for (int i = 0; i < strIn.length(); i++) {
-        if (strIn[i] >= 'A' and strIn[i] <= 'Z') upperSymbol+= to_string(i);
+        if (strIn[i] >= 'A' && strIn[i] <= 'Z') upperSymbol+= to_string(i);
     }
     outFile("Capital characters: " + upperSymbol);
     for (char elem : strIn) {
@@ -94,7 +94,7 @@ void PolybiusSquare() {
 char PolybiusToChar(char first, char second, const vector<pair<char, pair<int, int>>>& vec) {
     char c;
     for (pair<char, pair<int, int>> pair : vec) {
-        if (first - '0' == pair.second.first and second - '0' == pair.second.second) {
+        if (first - '0' == pair.second.first && second - '0' == pair.second.second) {
             c = pair.first;
             return c;
         }
@@ -137,7 +137,7 @@ void antiPolybiusSquare() {
             char numSecond = strIn[i+1];
             i++;
             letter = PolybiusToChar(numFirst, numSecond, polybius);
-            if (letter != 'i' and letter != 'j') {
+            if (letter != 'i' && letter != 'j') {
                 strOut.push_back(PolybiusToChar(numFirst, numSecond, polybius));
             }
             else {
