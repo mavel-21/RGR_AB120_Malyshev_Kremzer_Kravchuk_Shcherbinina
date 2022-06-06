@@ -85,8 +85,8 @@ int main() {
             cout
                 << "\t1. Gronsfeld cipher\n\t2. Encryption using the square of Polybius\n\t3. Simple table permutation\n\t4. Atbash cipher\n\t5. Keyword cipher\n\t6. Table cipher with a keyword\n\t7. Caesar cipher\n\t8. Double table permutation\n\t9. 'Tarabarskaya gramota'\n\tAny other character: go back\nChoose encryption (1-9): ";
             getline(cin, encryption_str);
-            if (encryption_str == "1" or encryption_str == "2" or encryption_str == "3" or encryption_str == "4" or
-                encryption_str == "5" or encryption_str == "6" or encryption_str == "7" or encryption_str == "8" or
+            if (encryption_str == "1" || encryption_str == "2" || encryption_str == "3" || encryption_str == "4" ||
+                encryption_str == "5" || encryption_str == "6" || encryption_str == "7" || encryption_str == "8" ||
                 encryption_str == "9")
                 encryption = encryption_str[0] - '0';
             else {
@@ -209,8 +209,8 @@ int main() {
             cout
                 << "\t1. Gronsfeld cipher\n\t2. Decryption using the square of Polybius\n\t3. Simple table permutation\n\t4. Atbash cipher\n\t5. Keyword cipher\n\t6. Table cipher with a keyword\n\t7. Caesar cipher\n\t8. Double table permutation\n\t9. 'Tarabarskaya gramota'\n\tAny other character: go back\nChoose decryption (1-9): ";
             getline(cin, decryption_str);
-            if (decryption_str == "1" or decryption_str == "2" or decryption_str == "3" or decryption_str == "4" or
-                decryption_str == "5" or decryption_str == "6" or decryption_str == "7" or decryption_str == "8" or
+            if (decryption_str == "1" || decryption_str == "2" || decryption_str == "3" || decryption_str == "4" ||
+                decryption_str == "5" || decryption_str == "6" || decryption_str == "7" || decryption_str == "8" ||
                 decryption_str == "9")
                 decryption =
                 decryption_str[0] -
