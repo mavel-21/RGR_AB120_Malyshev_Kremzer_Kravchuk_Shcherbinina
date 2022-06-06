@@ -37,25 +37,8 @@ void Gronsfeld() { // шифровка Гронсфельда
 
     for (int i = 0, count = 0; i < strIn.length(); i++, count++) {
         if (count == key.length()) count = 0; // сброс счётчика ключа
-        if (strIn[i] == ' ') { // учёт пробелов в строке
-            strOut.push_back(' ');
-            count--;
-            continue;
-        } else {
-            if (!isalpha(strIn[i])) {
-                strOut.push_back(strIn[i]);
-                continue;
-            }
-            char c;
-            if (strIn[i] >= 'a' && strIn[i] <= 'z' && strIn[i] + keyArr[count] > 'z')
-                c = strIn[i] + keyArr[count] - ('z' - 'a' +
-                                                1); // устранение бага появления неподходящих символов (десятичный код которых больший 122)
-            else if (strIn[i] >= 'A' && strIn[i] <= 'Z' && strIn[i] + keyArr[count] > 'Z')
-                c = strIn[i] + keyArr[count] - ('Z' - 'A' +
-                                                1); // устранение бага появления неподходящих символов (десятичный код которых больший 90 и меньший 97)
-            else c = strIn[i] + keyArr[count];
-            strOut.push_back(c); // добавление шифрованного символа в строку
-        }
+        char c = strIn[i] + keyArr[count];
+        strOut.push_back(c); // добавление шифрованного символа в строку
     }
     inFile("Phrase: " + strOut); // запись строки в файл
 }
