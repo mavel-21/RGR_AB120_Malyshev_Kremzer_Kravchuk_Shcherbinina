@@ -2,6 +2,15 @@
 #include <fstream>
 #include <string>
 #include "interface.h"
+#include "gronsfeld.h"
+#include "polybiusSquare.h"
+#include "simpleTablePermutation.h"
+#include "atbash.h"
+#include "keywordABC.h"
+#include "tableCypher.h"
+#include "Caesar.h"
+#include "doubleTable.h"
+#include "tarab.h"
 
 using namespace std;
 
@@ -10,6 +19,85 @@ void inFile(const string& inStr) { // функция записи строки �
     file.open("input.txt"); // открыть файл
     file << inStr << endl; // запись строки в файл
     file.close(); // закрыть файл
+}
+
+void cipherExec(int enc, int mode, string pinAdmin)
+{
+    string pinUser;
+    cout << "Please enter the pincode: ";
+    getline(cin, pinUser); // ввод пинкода
+    if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
+        cout << "    [Pincode validation passed successfully!]" << endl;
+        if (mode == 1)
+        {
+            switch (enc)
+            {
+            case 1:
+                Gronsfeld();
+                break;
+            case 2:
+                square();
+                PolybiusSquare();
+                break;
+            case 3:
+                STP();
+                break;
+            case 4:
+                atbash();
+                break;
+            case 5:
+                keywordABC();
+                break;
+            case 6:
+                tableCypher();
+                break;
+            case 7:
+                Caesar();
+                break;
+            case 8:
+                DoubleTable();
+                break;
+            case 9:
+                Tarab();
+                break;
+            }
+        }
+        else if (mode == 2)
+        {
+            switch (enc)
+            {
+            case 1:
+                antiGronsfeld();
+                break;
+            case 2:
+                antiPolybiusSquare();
+                break;
+            case 3:
+                antiSTP();
+                break;
+            case 4:
+                antiatbash();
+                break;
+            case 5:
+                antikeywordABC();
+                break;
+            case 6:
+                antitableCypher();
+                break;
+            case 7:
+                antiCaesar();
+                break;
+            case 8:
+                antiDoubleTable();
+                break;
+            case 9:
+                antiTarab();
+                break;
+            }
+        }
+        system("notepad.exe input.txt");
+    }
+    else cout << "    [Pincode is not correct!]" << endl;
 }
 
 void outFile(const string& inStr) { // функция записи строки в файл
