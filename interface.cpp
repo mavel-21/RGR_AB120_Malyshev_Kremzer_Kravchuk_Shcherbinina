@@ -23,6 +23,36 @@ void inFile(const string& inStr) { // функция записи строки �
 
 void cipherExec(int enc, int mode, string pinAdmin)
 {
+    switch (enc)
+    {
+    case 1:
+        cout << endl << "    [Gronsfeld]" << endl << endl;
+        break;
+    case 2:
+        cout << endl << "    [Polybius square]" << endl << endl;
+        break;
+    case 3:
+        cout << endl << "    [Simple table permutation]" << endl << endl;
+        break;
+    case 4:
+        cout << endl << "    [Atbash cipher]" << endl << endl;
+        break;
+    case 5:
+        cout << endl << "    [Keyword cipher]" << endl << endl;
+        break;
+    case 6:
+        cout << endl << "    [Table cipher with a keyword]" << endl << endl;
+        break;
+    case 7:
+        cout << endl << "    [Caesar]" << endl << endl;
+        break;
+    case 8:
+        cout << endl << "    [Double table permutation]" << endl << endl;
+        break;
+    case 9:
+        cout << endl << "    ['Tarabarskaya gramota']" << endl << endl;
+        break;
+    }
     string pinUser;
     cout << "Please enter the pincode: ";
     getline(cin, pinUser); // ввод пинкода
