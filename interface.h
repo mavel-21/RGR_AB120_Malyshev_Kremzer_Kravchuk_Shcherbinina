@@ -8,6 +8,7 @@
 using namespace std;
 
 void inFile(const string& inStr);
+bool isEmpty();
 void cipherExec(int enc, int mode, string pinAdmin);
 void outFile(const string& inStr);
 void clearFile();
