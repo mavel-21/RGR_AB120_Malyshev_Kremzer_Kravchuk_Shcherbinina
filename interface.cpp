@@ -21,6 +21,15 @@ void inFile(const string& inStr) { // функция записи строки �
     file.close(); // закрыть файл
 }
 
+bool isEmpty()
+{
+    ifstream file;
+    file.open("info.txt");
+    bool isEmpty = (file.peek() == std::ifstream::traits_type::eof());
+    file.close();
+    return isEmpty;
+}
+
 void cipherExec(int enc, int mode, string pinAdmin)
 {
     switch (enc)
@@ -54,6 +63,7 @@ void cipherExec(int enc, int mode, string pinAdmin)
         break;
     }
     string pinUser;
+    int exceptionThrown = 0;
     cout << "Please enter the pincode: ";
     getline(cin, pinUser); // ввод пинкода
     if (checkPincode(pinUser, pinAdmin)) { // проверка того, совпадает ли заданный пинкод с вводимым
@@ -94,38 +104,55 @@ void cipherExec(int enc, int mode, string pinAdmin)
         }
         else if (mode == 2)
         {
+            try {
             switch (enc)
             {
             case 1:
+                if (isEmpty()) throw ("EMPTY_INFO_FILE");
                 antiGronsfeld();
                 break;
             case 2:
                 antiPolybiusSquare();
                 break;
             case 3:
+                if (isEmpty()) throw ("EMPTY_INFO_FILE");
                 antiSTP();
                 break;
             case 4:
                 antiatbash();
                 break;
             case 5:
+                if (isEmpty()) throw ("EMPTY_INFO_FILE");
                 antikeywordABC();
                 break;
             case 6:
+                if (isEmpty()) throw ("EMPTY_INFO_FILE");
                 antitableCypher();
                 break;
             case 7:
+                if (isEmpty()) throw ("EMPTY_INFO_FILE");
                 antiCaesar();
                 break;
             case 8:
+                if (isEmpty()) throw ("EMPTY_INFO_FILE");
                 antiDoubleTable();
                 break;
             case 9:
                 antiTarab();
                 break;
             }
+            }
+            catch (...)
+            {
+                cout << "    [ERROR] Key file is empty! Possible reasons are:" << endl <<
+                    "1) You're trying to use decryption on an empty text file" << endl << 
+                    "2) You're trying to use key-based decryption for a text that was encrypted without a key" << endl <<
+                    "Note that using wrong decryption on your encrypted text may cause unexpected results!" << endl << endl;
+                exceptionThrown = 1;
+            }
         }
-        system("notepad.exe input.txt");
+        if (exceptionThrown == 0)
+            system("notepad.exe input.txt");
     }
     else cout << "    [Pincode is not correct!]" << endl;
 }
