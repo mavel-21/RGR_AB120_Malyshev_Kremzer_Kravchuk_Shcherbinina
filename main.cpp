@@ -14,6 +14,7 @@ int main() {
 
     string dialogStr; // диалоговая строка
     string pinAdmin = "1111"; // дефолтный пинкод
+
     cout << endl << "______________________________Hello______________________________" << endl <<
         "__________To display a list of all commands write: help__________" << endl <<
         "____Set a password, enter a passphrase, and choose encryption____" << endl << endl;
@@ -77,9 +78,7 @@ int main() {
             cout
                 << "\t1. Gronsfeld cipher\n\t2. Encryption using the square of Polybius\n\t3. Simple table permutation\n\t4. Atbash cipher\n\t5. Keyword cipher\n\t6. Table cipher with a keyword\n\t7. Caesar cipher\n\t8. Double table permutation\n\t9. 'Tarabarskaya gramota'\n\tAny other character: go back\nChoose encryption (1-9): ";
             getline(cin, encryption_str);
-            if (encryption_str == "1" || encryption_str == "2" || encryption_str == "3" || encryption_str == "4" ||
-                encryption_str == "5" || encryption_str == "6" || encryption_str == "7" || encryption_str == "8" ||
-                encryption_str == "9")
+            if (encryption_str.size() == 1 && isdigit(encryption_str[0]) && stoi(encryption_str) != 0)
                 encryption = encryption_str[0] - '0';
             else {
                 cout << "   [GO BACK]" << endl << endl;
@@ -93,12 +92,8 @@ int main() {
             cout
                 << "\t1. Gronsfeld cipher\n\t2. Decryption using the square of Polybius\n\t3. Simple table permutation\n\t4. Atbash cipher\n\t5. Keyword cipher\n\t6. Table cipher with a keyword\n\t7. Caesar cipher\n\t8. Double table permutation\n\t9. 'Tarabarskaya gramota'\n\tAny other character: go back\nChoose decryption (1-9): ";
             getline(cin, decryption_str);
-            if (decryption_str == "1" || decryption_str == "2" || decryption_str == "3" || decryption_str == "4" ||
-                decryption_str == "5" || decryption_str == "6" || decryption_str == "7" || decryption_str == "8" ||
-                decryption_str == "9")
-                decryption =
-                decryption_str[0] -
-                '0';
+            if (decryption_str.size() == 1 && isdigit(decryption_str[0]) && stoi(decryption_str) != 0)
+                decryption = decryption_str[0] - '0';
             else {
                 cout << "   [GO BACK]" << endl << endl;
                 continue;
@@ -115,7 +110,6 @@ int main() {
             cout << "decrypt -- Choice of decryption" << endl;
             cout << "random -- Random text to encrypt/decrypt" << endl;
             cout << "stop -- Stop program;" << endl << endl;
-
         }
         else if (dialogStr == "stop") { // остановка программы
             cout << "    [The program has been stopped]" << endl;
