@@ -108,7 +108,7 @@ void cipherExec(int enc, int mode, string pinAdmin)
             switch (enc)
             {
             case 1:
-                if (getKey("KeyD: ", 5) == "") throw ("EMPTY_INFO_FILE");
+                if (getKey("KeyD: ", 6) == "") throw ("EMPTY_INFO_FILE");
                 antiGronsfeld();
                 break;
             case 2:
@@ -131,7 +131,7 @@ void cipherExec(int enc, int mode, string pinAdmin)
                 antitableCypher();
                 break;
             case 7:
-                if (getKey("KeyD: ", 5) == "") throw ("EMPTY_INFO_FILE");
+                if (getKey("KeyD: ", 6) == "") throw ("EMPTY_INFO_FILE");
                 antiCaesar();
                 break;
             case 8:
