@@ -29,7 +29,7 @@ void Caesar() {
     }
     string str = getString("Phrase: ", 8);
     n = n % 26;
-    outFile("Key: " + to_string(n));
+    outFile("KeyD: " + to_string(n));
     for (auto &c: str) {
         if (c <= 'a' && c >= 'z' || c <= 'A' && c >= 'Z') {
             continue;
@@ -43,7 +43,7 @@ void Caesar() {
 }
 
 void antiCaesar() {
-    int n = stoi(getKey("Key: ", 5));
+    int n = stoi(getKey("KeyD: ", 5));
     string str = getString("Phrase: ", 8);
     n = n % 26;
     for (auto &c: str) {
