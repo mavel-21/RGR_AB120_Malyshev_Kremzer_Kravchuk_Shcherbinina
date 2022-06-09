@@ -112,7 +112,7 @@ void cipherExec(int enc, int mode, string pinAdmin)
                 antiGronsfeld();
                 break;
             case 2:
-                if ((!isEmpty()) && (getKey("Capital characters: ", 20) == "")) throw ("EMPTY_INFO_FILE");
+                if (isEmpty()) throw ("EMPTY_INFO_FILE");
                 antiPolybiusSquare();
                 break;
             case 3:
