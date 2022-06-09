@@ -43,7 +43,7 @@ void Caesar() {
 }
 
 void antiCaesar() {
-    int n = stoi(getKey("KeyD: ", 5));
+    int n = stoi(getKey("KeyD: ", 6));
     string str = getString("Phrase: ", 8);
     n = n % 26;
     for (auto &c: str) {
