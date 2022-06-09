@@ -44,7 +44,7 @@ void Gronsfeld() { // шифровка Гронсфельда
 }
 
 void antiGronsfeld() {
-    string key_str = getKey("KeyD: ", 5);
+    string key_str = getKey("KeyD: ", 6);
     vector<int> keyArr(key_str.length());
     for (int i = 0; i < key_str.length(); i++) {
         keyArr[i] = key_str[i] - '0';
