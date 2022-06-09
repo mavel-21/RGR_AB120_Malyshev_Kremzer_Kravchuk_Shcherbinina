@@ -108,33 +108,34 @@ void cipherExec(int enc, int mode, string pinAdmin)
             switch (enc)
             {
             case 1:
-                if (isEmpty()) throw ("EMPTY_INFO_FILE");
+                if (getKey("Key: ", 5) == "") throw ("EMPTY_INFO_FILE");
                 antiGronsfeld();
                 break;
             case 2:
+                if ((!isEmpty()) && (getKey("Capital characters: ", 20) == "")) throw ("EMPTY_INFO_FILE");
                 antiPolybiusSquare();
                 break;
             case 3:
-                if (isEmpty()) throw ("EMPTY_INFO_FILE");
+                if (getKey("Columns: ", 9) == "") throw ("EMPTY_INFO_FILE");
                 antiSTP();
                 break;
             case 4:
                 antiatbash();
                 break;
             case 5:
-                if (isEmpty()) throw ("EMPTY_INFO_FILE");
+                if (getKey("Key: ", 5) == "") throw ("EMPTY_INFO_FILE");
                 antikeywordABC();
                 break;
             case 6:
-                if (isEmpty()) throw ("EMPTY_INFO_FILE");
+                if (getKey("Key: ", 5) == "") throw ("EMPTY_INFO_FILE");
                 antitableCypher();
                 break;
             case 7:
-                if (isEmpty()) throw ("EMPTY_INFO_FILE");
+                if (getKey("Key: ", 5) == "") throw ("EMPTY_INFO_FILE");
                 antiCaesar();
                 break;
             case 8:
-                if (isEmpty()) throw ("EMPTY_INFO_FILE");
+                if (getKey("Key 1: ", 7) == "") throw ("EMPTY_INFO_FILE");
                 antiDoubleTable();
                 break;
             case 9:
@@ -144,9 +145,10 @@ void cipherExec(int enc, int mode, string pinAdmin)
             }
             catch (...)
             {
-                cout << "    [ERROR] Key file is empty! Possible reasons are:" << endl <<
+                cout << "    [ERROR] Couldn't find keys for choosen decryption! Possible reasons are: " << endl <<
                     "1) You're trying to use decryption on an empty text file" << endl << 
                     "2) You're trying to use key-based decryption for a text that was encrypted without a key" << endl <<
+                    "3) You're trying to decrypt message using wrong decryption" << endl <<
                     "Note that using wrong decryption on your encrypted text may cause unexpected results!" << endl << endl;
                 exceptionThrown = 1;
             }
@@ -228,3 +230,4 @@ bool checkString(const string& mark) {
 bool checkPincode(const string& pinUser, const string& pinAdmin) { // функция проверки пинкода
     return (pinUser == pinAdmin);
 }
+
