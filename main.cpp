@@ -105,7 +105,6 @@ int main() {
             cout << "input -- Writing a line to a file;" << endl;
             cout << "get -- Displaying the contents of a file;" << endl;
             cout << "clear -- Cleaning up the contents of a file;" << endl;
-            cout << "pin -- Pincode setting;" << endl;
             cout << "encrypt -- Choice of encryption" << endl;
             cout << "decrypt -- Choice of decryption" << endl;
             cout << "random -- Random text to encrypt/decrypt" << endl;
