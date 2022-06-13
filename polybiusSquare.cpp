@@ -5,44 +5,6 @@
 
 using namespace std;
 
-void square() {
-    string line;
-    line = "\t1\t2\t3\t4\t5";
-    line = "";
-    line = '1';
-    for (char c = 'A'; c <= 'E'; c++) {
-        line += '\t';
-        line += c;
-    }
-    line = "";
-    line = '2';
-    for (char c = 'F'; c <= 'K'; c++) {
-        if (c != 'J') {
-            line += '\t';
-            line += c;
-        }
-        else line += c;
-    }
-    line = "";
-    line = '3';
-    for (char c = 'L'; c <= 'P'; c++) {
-        line += '\t';
-        line += c;
-    }
-    line = "";
-    line = '4';
-    for (char c = 'Q'; c <= 'U'; c++) {
-        line += '\t';
-        line += c;
-    }
-    line = "";
-    line = '5';
-    for (char c = 'V'; c <= 'Z'; c++) {
-        line += '\t';
-        line += c;
-    }
-}
-
 int charToPolybius(char c, const vector<pair<char, pair<int, int>>>& vec) {
     int pos;
     for (pair<char, pair<int, int>> pair : vec) {
