@@ -214,19 +214,6 @@ string getKey(const string& mark, int pos_n) { // функция получен�
     return str_out; // вывести фразу
 }
 
-bool checkString(const string& mark) {
-    ifstream file;
-    string line;
-    file.open("input.txt"); // открыть файл
-    while (getline(file, line)) { // пока в файле есть строки
-        if (line.find(mark) >= 0) {
-            return true;
-            break;
-        }
-    }
-    return false;
-}
-
 bool checkPincode(const string& pinUser, const string& pinAdmin) { // функция проверки пинкода
     return (pinUser == pinAdmin);
 }
