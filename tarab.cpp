@@ -13,7 +13,7 @@ void Tarab() {
     int k = word.size();
     string stOut = "";
     for (int i = 0; i < k; i++) {
-        if (word[i] <= 'a' && word[i] >= 'z' || word[i] <= 'A' && word[i] >= 'Z') {
+        if (word[i] < 'a' && word[i] > 'z' || word[i] < 'A' && word[i] > 'Z') {
             continue;
         }
         if (word[i] >= 'a' && word[i] <= 'z')
@@ -74,7 +74,7 @@ void antiTarab() {
     int k = word.size();
     string stOut = "";
     for (int i = 0; i < k; i++) {
-        if (word[i] <= 'a' && word[i] >= 'z' || word[i] <= 'A' && word[i] >= 'Z') {
+        if (word[i] < 'a' && word[i] > 'z' || word[i] < 'A' && word[i] > 'Z') {
             continue;
         }
         if (word[i] >= 'a' && word[i] <= 'z')
