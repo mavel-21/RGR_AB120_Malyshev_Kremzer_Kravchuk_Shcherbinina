@@ -31,7 +31,7 @@ void Caesar() {
     n = n % 26;
     outFile("KeyD: " + to_string(n));
     for (auto &c: str) {
-        if (c <= 'a' && c >= 'z' || c <= 'A' && c >= 'Z') {
+        if (c < 'a' && c > 'z' || c < 'A' && c > 'Z') {
             continue;
         }
         if (c >= 'a' && c <= 'z')
@@ -47,7 +47,7 @@ void antiCaesar() {
     string str = getString("Phrase: ", 8);
     n = n % 26;
     for (auto &c: str) {
-        if (c <= 'a' && c >= 'z' || c <= 'A' && c >= 'Z') {
+        if (c < 'a' && c > 'z' || c < 'A' && c > 'Z') {
             continue;
         }
         if (c >= 'a' && c <= 'z') {
