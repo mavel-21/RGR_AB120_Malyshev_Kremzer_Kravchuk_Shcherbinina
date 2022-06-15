@@ -22,7 +22,7 @@ void DoubleTable() {
             isPrime = 0;
     if (isPrime) {
         cout
-                << "   [ERROR] Can't use Double table permutation with a text of length which is a prime number! Length of text is: "
+                << "    [ERROR] Can't use Double table permutation with a text of length which is a prime number! Length of text is: "
                 << st.size() << endl << endl;
         return;
     }
@@ -40,6 +40,24 @@ void DoubleTable() {
             if (m * n != st.size()) {
                 flag = 0;
                 throw 1;
+            }
+            for (int i = 0; i < kl.length(); i++) {
+                for (int j = 0; j < kl.length(); j++) {
+                    if (i != j && kl[i] == kl[j])
+                    {
+                        flag = 0;
+                        throw 1;
+                    }      
+                }
+            }
+            for (int i = 0; i < kl2.length(); i++) {
+                for (int j = 0; j < kl2.length(); j++) {
+                    if (i != j && kl2[i] == kl2[j])
+                    {
+                        flag = 0;
+                        throw 1;
+                    }
+                }
             }
             for (char elem: kl) {
                 if (!isdigit(elem)) {
@@ -69,7 +87,7 @@ void DoubleTable() {
         }
         catch (...) {
             cout
-                    << "Incorrect keys! Note the rules:\n1) Length of key 1 * length of key 2 should be equal to text length!\n2) Key must contain only numbers!\n3) Digits of key shouldn't be greater than length of key!"
+                    << "Incorrect keys! Note the rules:\n1) Length of key 1 * length of key 2 should be equal to text length!\n2) Key must contain only numbers!\n3) Digits of key shouldn't be greater than length of key!\n4) Key must not contain same numbers!"
                     << endl;
             cout << "Example: Text length = 12, Key 1 = 1324, Key 2 = 132" << endl;
             cout << "Text length: " << st.size() << endl << endl;
