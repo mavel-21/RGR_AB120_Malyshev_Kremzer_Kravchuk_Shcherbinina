@@ -32,10 +32,10 @@ void antiatbash() {
         if (isalpha(line[i])) {
             if (isupper(line[i])) {
                 ind = int(line[i]) - 65;
-                line[i] = abc[ind];
+                line[i] = cab[ind];
             } else {
                 ind = int(line[i]) - 97;
-                line[i] = tolower(abc[ind]);
+                line[i] = tolower(cab[ind]);
             }
         }
     }
